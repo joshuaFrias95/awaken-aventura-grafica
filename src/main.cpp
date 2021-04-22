@@ -6,130 +6,151 @@
 #include <cmath>
 using namespace std;
 
+bool gameover = false; //Fin de juego
+bool contMenu;
+bool exitGame;
+
+
+
+/*******************************     FUNCIONES PRINCIPALES PARA MENÚ     ************************************************/
+
+/////////////////////////////////////////// INSTRUCCIONES ///////////////////////////////////////////////////////////////////////////
+void instrucciones() {
+   system("clear");
+   cout<< R"(
+          
+		__,  _,  _, __, __, _ ___   _,_  _,  _,   _,_ _, _  _, _,_  _, _, _
+ | \ / \ / ` |_  |_) |  |    | / / \ (_    | | |\/| / \ | | /_\ |\/|
+ |_/ \ / \ , |   |_) |  |    |/  \ / , )   | | |  | \\/ | | | | |  |
+ ~    ~   ~  ~~~ ~   ~  ~    ~    ~   ~    `~' ~  ~  ~` `~' ~ ~ ~  ~
+                                                                    
+  _,  _, _, _ _, _ _ _,_ _, _   _ ___ _ _, _ __, __, _ __, _,_  _,
+ (_  / \ |\/| |\ | | | | |\/|   |  |  | |\ | |_  |_) | |_) | | (_ 
+ , ) \ / |  | | \| | | | |  |   |  |  | | \| |   | \ | |_) | | , )
+  ~   ~  ~  ~ ~  ~ ~ `~' ~  ~   ~  ~  ~ ~  ~ ~~~ ~ ~ ~ ~   `~'  ~ 
+                                                                  
+  )";
+   cout<<"   El sueño te guiara a caminos jamás vistos..\n\n";
+   cout<<"   Acabas de despertar y no estás seguro de lo que recuerdas. Sé cauteloso,\n";
+   cout<<"   cada movimiento y decisión afectará directamente el porcentaje de tu vida.\n";
+   cout<<"\n   Recuerda: No estas SOLO. Sigue la voz y llegarás a tu destino.\n";
+   contMenu = true;
+}
+
+/////////////////////////////////////////// CRÉDITOS ///////////////////////////////////////////////////////////////////////////
+void creditos() {
+   system("clear");
+   cout<<"El siguiente proyecto ha sido elaborado para la materia de Informática General - Cátedra Tirigall de la"<<endl;
+	cout<<"carrera de Artes Multimediales de la Universidad Nacional de las Artes (Buenos Aires, Argentina)"<<endl<<endl;
+	cout<<"Realizadores:"<<endl<<endl;
+	cout<<"Carla Torrejón"<<endl;
+	cout<<"Nadia Torrejón"<<endl;
+	cout<<"Joshua Frías"<<endl;
+   cout<< R"(
+                 .''.                          .' 
+                 .MW;                          ;K 
+. .. ..          .Ml.    . .  .. o0x.. .      cKK 
+                .oM. ,;    ;,   :0Xx          dNk 
+   ..           ;WM. dk.   xd  .KWd        .  dk  
+. .lO..         :X'. dWK . xd .WWo.... .  .M. dk  
+   lXx    'd    :K   dWK   xd.kMx';kkk.  'OM. dk  
+   lWN.   :K ,. :K  'xNK   xklWW. cWNW.  ;WM;.dk  
+   lWN.   :K X; ;K  Ol:K   xWWN.  c0     ;WMW;dk  
+  dNWWX.  :K XNc:K  Ol:WK. xWWWX. cWXXX: ;X:N;dk  
+  xXOOM'  :NoNWl:K  OOkWW. xXOOM' cNOOO; ;K Xx0k  
+. xd .W;. :WMWWdcK .0WWWW. xd .M;.c0.. . ;K XWWk  
+  xd .WW: :WM'0WWK XWo.,W. xd .MWcc0     ;K .OWk  
+  xXOOMW: :WM.:0WK Xk, .W.dXd .oXKKNOOO,;KK  OWk  
+. xNKKXNd':WM. lXK X;  .WcXNl ..kNNKKXK;cNO  xKd  
+  xd   KWl;WM.  ;K X;  .WMW:     xd     cO        
+  '.   ,0l.,;.  ., ,.  .;;;.     '.     .'        
+. .. .. l;               . .  .. . ... .          
+   )";
+}
+
+/////////////////////////////////////////// SALIR ///////////////////////////////////////////////////////////////////////////
+void salir() {
+   cout<<"\n\t¡Gracias por jugar!";
+   exit(EXIT_SUCCESS);
+}
+
+
 
 
 int main() {
-   
-   bool gameover = false; //Booleano de fin del juego
-	bool boolMenu = false; //El booleano del menú principal
-   bool choise = false;
-	int start; //Primer variable de inicio
-	int play; //Variable usada para el menú general del juego
-   int continuar; //Para continuar a cada sección es necesario escribir 1 A MENOS QUE SEA NECESARIO OTRO COMANDO
-	int pv = 100; //Puntos de vida
-   char action;
 
-   do {
-      cout<<"Ingresa 1 para continuar:";
-		cin>>start;      
-   }while (start != 1);
+   bool endMenu = false; 
+   bool initGame;
+   int numbOpt;
+   int pressStart; 
+   int select;
+   int coinMenu = 5;
+
+   do
+   {
+      cout<<"\n\n\n\t\t┌───────────────────────────────────────────────────────┐\n";
+      cout<<"\t\t│\t Ingresa 1 para comenzar y presiona ENTER\t│\n";
+      cout<<"\t\t└───────────────────────────────────────────────────────┘\n";
+      cin>>pressStart;
+   } while (pressStart != 1);
 
    do
    {
       system("clear");
-      /* COUT CON NOMBRE DEL JUEGO EN R"()"" */
-      /* COUT CON OJO DEL JUEGO EN R"()"" */
-
-      cout<<"MENÚ: \n\n";
-		cout<<"1)Jugar\n";
-		cout<<"2)Instrucciones\n";
-		cout<<"3)Créditos\n";
-		cout<<"4)Salir\n\n";
-		cout<<"Elige una opción: ";
-		cin>>play;
-
-      
-      switch (play) {
-         
+      cout<<"\n\tMenú";
+      cout<<"\n\n\t1) Jugar";
+      cout<<"\n\t2) Instrucciones";
+      cout<<"\n\t3) Créditos";
+      cout<<"\n\t4) Salir";
+      cin>>select;
+      system("clear");
+      switch (select)
+      {
          case 1:
-			boolMenu = true;
-			break;
+         initGame = true;
+         endMenu = true;
+         break;
 
          case 2:
-			system("clear");
-			cout<<"EL SUEÑO TE GUIARÁ POR CAMINOS JAMÁS VISTOS...\n\n\n";
-			cout<<"Acabas de despertar y no estás seguro de lo que recuerdas.\n ";
-			cout<<"Sé cauteloso, cada movimiento que realices puede afectar tu porcentaje de vida.\n\n";
-			cout<<"Recuerda: No estás solo. Sigue a tu instinto y llegarás a tu destino.\n\n"<<endl;
-			break;
+         contMenu = true;
+         endMenu = true;
+         coinMenu++;
+         break;
 
          case 3:
-			system("clear");
-			cout<<"El siguiente proyecto ha sido elaborado para la materia de Informática General - Cátedra Tirigall"<<endl;
-			cout<<"de la carrera de Artes Multimediales de la Universidad Nacional de las Artes (Buenos Aires, Argentina)"<<endl<<endl;
-			cout<<"Realizadores:"<<endl<<endl<<endl;
-			cout<<"Carla Torrejón"<<endl;
-			cout<<"Nadia Torrejón"<<endl;
-			cout<<"Joshua Frías\n\n"<<endl;
+         contMenu = true;
+         endMenu = true;
+         coinMenu--;
          break;
 
          case 4:
-         system("clear");
-         cout<<"¡Gracias por jugar!\n";
-         /* COUT CON FANTASMA EN R"()"" */
-         exit(EXIT_SUCCESS);
+         exitGame = true;
+         endMenu = true;
+         coinMenu = 0;
          break;
-      
+
          default:
          cout<<"Opción incorrecta";
-         boolMenu=true;
          break;
       }
-   } while (!boolMenu);
+   } while (!endMenu);
 
-   if (play == 1) {
-      
-      while (!gameover) {
-         
-         do {
-            system("clear");
-            cout<<"Vida: "<<pv<<endl<<endl<<endl;
-            cout<<"\n\n\n\n\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
-            cout<<"\n\n\tLa habitación está oscura...";
-            cout<<"\tSientes tu cuerpo adormecido...";
-            cout<<"\tTus sentidos se agudizan más y más...\n\n";
-            cout<<"\t\t\t¡UN RUIDO!\n\n";
-            cout<<"\t\"¡¿QUÉ ES ESO?!...¿QUIÉN ANDA AHÍ?\"\n";
-            cout<<"\n\n\n\n\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
-            cout<<"\tIngresar 1 para continuar:"<<endl;
-            cin>>continuar;
-         } while (continuar == 1);
+   system("clear");
+   if (contMenu= true && coinMenu == 6)
+   {
+      instrucciones();
+   } else if (contMenu= true && coinMenu == 4) {
+      creditos();
+      coinMenu++;
+   } else if (endMenu= true && coinMenu == 0) {
+      salir();
+   };
 
-         do {
-            system("clear");
-            cout<<"Vida: "<<pv<<endl<<endl<<endl;
-            cout<<"\n\n\n\n\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
-            cout<<"\n\n\tMás texto en donde nos";
-            cout<<"\tdamos cuenta de que alguien está ahí";
-            cout<<"\n\n\n\t\t\tUna voz te dice:\t\t -\"No te muevas\"\n\n";
-            cout<<"\t\"Y aquí decides si te mueves o te quedas\"\n";
-            cin>>action;
-            cout<<"\n\nOpciones:";
-            cout<<"\nTe mueves";
-            cout<<"\nNo te mueves";
-
-            switch (action)
-            {
-               case 1:
-               system("clear");
-               (pv - 15);
-               cout<<"Vida: "<<pv<<endl<<endl<<endl;
-               cout<<"Te moviste y te atacó";
-               break;
-            
-               case 2:
-               system("clear");
-               cout<<"No te moviste y ya";
-               break;
-            default:
-               break;
-            }
-         } while (!choise);
-         
-         
-      }
-      
-   }
    
+
+   
+  
+   
+
    return 0;
 }

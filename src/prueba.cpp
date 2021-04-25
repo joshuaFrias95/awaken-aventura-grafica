@@ -1,7 +1,3 @@
-//Torrejón Torres Carla
-//Torrejón Torres Nadia
-//Frías Hernández Joshua
-
 #include <iostream>
 #include <cmath>
 #include <random>

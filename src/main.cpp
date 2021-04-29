@@ -6,11 +6,12 @@
 #include <cmath>
 #include <random>
 #include <thread>
-#include <chrono>
-
+#include <string>
+ 
 using namespace std;
 
 bool movimiento;
+bool ayudar;
 int primermovimiento;
 int pv = 10; //Vidas
 int puerta;
@@ -29,9 +30,9 @@ void puertas();
 void puertacorrecta();
 void puertaincorrecta();
 void escaleras();
-void interaccion_fantasma(); //Próximo a desarrollar
-void aceptar_fantasma();    //Próximo a desarrollar
-void rechazar_fantasma();   //Próximo a desarrollar
+void interaccion_fantasma();
+void help();    
+void nohelp();   
 void espejo();  //Próximo a desarrollar
 void cruzandoespejo_aceptar_fantasma(); //Próximo a desarrollar
 void cruzandoespejo_rechazar_fantasma();    //Próximo a desarrollar
@@ -43,7 +44,7 @@ int main() {
 
     menupr();
     juegopr();
-    if (movimiento=true && primermovimiento==1)     //Te meves
+    if (movimiento=true && primermovimiento==1)     //Te mueves
     {
         pv--;
         moverte();
@@ -52,9 +53,26 @@ int main() {
         {
             puertaincorrecta();
         } else if (puerta == 300) {
+            
             puertacorrecta();
+            interaccion_fantasma();
+
+            if (ayudar==true)
+            {
+                help();
+                espejo();
+            } else if (ayudar==false)
+            {
+               nohelp();
+            }
+            
+            
         };
-        escaleras();      
+        //escaleras(); 
+        
+        
+        
+         
     } 
     if (movimiento=true && primermovimiento==2)     //No te mueves
     {
@@ -120,9 +138,9 @@ void menupr() {
         cout<<"\n\n\n\t\t\t1) Jugar";
         cout<<"\t\t2) Instrucciones";
         cout<<"\t\t0) Salir";
-        cout<<"\n\n\n\n\n\n\n\n¿Qué opción eliges?  ";
+        cout<<"\n\n\n\n\n\n\n\n¿Qué opción eliges?  \a";
         cin>>opcion;
-
+        
         switch (opcion)
         {
         case 1:
@@ -162,10 +180,10 @@ void instrucciones() {
         )";
         cout<<"\n\n\t\t\t\t\"El sueño te guiará a caminos jamás vistos...\"";
         cout<<"\n\n\n\n\tAcabas de despertar y no estás seguro de lo que sucede.";
-        cout<<"\n\tSé cautelosx, cada movimiento y decisión afectará directamente el porcentaje de tu vida.\n";
+        cout<<"\n\tSe cautelosx, cada movimiento y decisión afectará directamente el porcentaje de tu vida.\n";
         cout<<"\n\tRecuerda: No estas SOLX. Sigue la voz y llegarás a tu destino.\n";
         cout<<"\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
-         cout<<"\n\n\n\tAWAKEN es una aventura conversacional creada por Carla Torrejón, Nadia Melyna y Joshua Frías para el primer";
+         cout<<"\n\n\n\tAWAKEN es una aventura conversacional creada por Carla Torrejón, Nadia Melyna T y Joshua Frías para el primer";
          cout<<"\n\tcuatrimestre de Informática General en la Universidad Nacional de Artes, 2021,";
          cout<<"\n\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
         //Opciones del menú principal
@@ -216,7 +234,7 @@ void juegopr() {
         )";
         cout<< "\n\nAcabas de despertar y no estás segurx de lo que recuerdas.\nNo sientes tus manos ni tus piernas.\nLa habitación esta oscura.";
         cout<<"\nEscuchas un sonido.\n";
-        cout<<"\n\n~Susurro: ¡No te muevas!";
+        cout<<"\n\n~Susurro: No te muevas~";
         cout<<"\n\n\n\n\n¿Qué decides hacer\?";
         cout<<"\n\n\n\t\t\t1)Moverte";
         cout<<"\t\t2)No moverte";
@@ -274,11 +292,11 @@ void moverte() {
                                         ░░░░░░░██████████░░██░░█████████░░░░░░░░
                                         ░░░░░░░███████████░██░██████████░░░░░░░░
     )";
-    cout<<"\nObservas una silueta negra amorfa ingresar a tu cuarto que empieza a vociferar algo indescifrable. \n";
-    cout<<"QUIERES GRITAR Y NO PUEDES.\n";
+    cout<<"\nObservas a una silueta negra amorfa acercarse lentamente a la habitación.De pronto empieza a vociferar algo indescifrable. \n";
+    cout<<"~QUIERES GRITAR Y NO PUEDES.~\n";
     cout<<"\n\n¿Dejaste tu cuerpo atrás\? Tal vez. Ya no lo sientes\n";
-    cout<<"Observas hacia abajo y ves tu cuerpo echado en tu cama.\n";
-    cout<<"Estas dormido, pero estas seguro que esto no es un simple juego.\n";
+    cout<<"Observas hacia abajo y ves tu cuerpo acostado en tu cama.\n";
+    cout<<"Estas dormido, pero estas seguro que esto no es un simple sueño.\n";
     cout<<"\nSusurro: Debes seguir el camino.\n";
     cout<<"\nVidas: "<<pv;
     cout<<"\nIngresa 1 para continuar:  ";cin>>continuar;
@@ -308,8 +326,8 @@ void nomoverte() {
                                     ......................                                                              
                                                 ....                                                                    
         )";
-        cout<<"\n\tObservas la hora en el reloj de mesa:\t\t\t\t\t\t3:00 am.\n\n\n";
-        cout<<"\n\n\t\tSusurro: Hiciste bien, no te hubiera gustado ver lo que hubiera ingresado por esa puerta."; 
+        cout<<"\n\t Abres los ojos y observas con dificultad la hora en el reloj de mesa:\t\t\t\t\t\t3:00 am.\n\n\n";
+        cout<<"\n\n\t\tSusurro: ~Hiciste bien, no te hubiera gustado ver lo que se hubiera asomado por esa puerta.~"; 
         cout<<"\n\n\n\t\t\t1) ¿Quién eres?";
         cout<<"\t\t2) ¿Dónde estoy?";
         cout<<"\t\t3) Continuar con el viaje";
@@ -372,8 +390,8 @@ void dondeestoy() {
     do
     {
         system("clear");
-        cout<<"\n\tEstas en camino a saberlo...";
-        cout<<"\n\tNunca olvides la hora.";
+        cout<<"\n\t~Pronto lo sabrás...~";
+        cout<<"\n\t~Nunca olvides la hora.~";
         cout<<"\n\n\n\t\t\t\t\t1)¿Quién eres?";
         cout<<"\t\t2)Volver";
         cout<<"\n";
@@ -399,8 +417,8 @@ void puertas() {
         while (next == true)
         {
             system("clear");
-            cout<<"Recorres un largo y frio pasillo confundidx por el hecho de no tener una forma corpórea.";
-            cout<<"Observas siluetas avanzando junto a ti, más adelante hay dos puertas que llaman tu atención.";
+            cout<<"Recorres un largo y oscuro pasillo confundidx por el hecho de no tener una forma corpórea.";
+            cout<<"Observas siluetas avanzando junto a ti. De pronto, observas dos puertas que llaman tu atención.";
             cout<<"\n\nTe acercas";
             cout<<R"(
                                   _______________                           _______________
@@ -461,9 +479,9 @@ void puertacorrecta() {
                                                     | |   ,'      | |
                                                     |_|,'_________|_|
         )";
-        cout<<"\n\nUn viento helado escapa al abrir la puerta.";
-        cout<<"\nNo parece haber ningún peligro";
-        cout<<"\n\n~Susurro: ¡Sigue avanzando! Estás más cerca de lo que crees";
+        cout<<"\n\n~Un viento helado escapa al abrir la puerta.~";
+        cout<<"\nNo encuentras nada en la habitación";
+        cout<<"\n\n~Susurro: ~Sigue avanzando...Estás más cerca de lo que crees~";
         cout<<"\nVidas:"<<pv;
 
         cout<<"\n\nIngresa 1 para continuar:  ";
@@ -485,9 +503,9 @@ void puertaincorrecta() {
     pv -=2;
     do
     {
-        cout<<"Sientes los pasos pesados y la respiración más lenta, unas siluetas vuelven a cruzar por medio tuyo.\n";
-        cout<<"De repente una silueta te ataca";
-        cout<<"Susurro: Se cuidadoso. Recuerda y observa. Cada vida perdida aquí, es un paso más a lo desconocido.";
+        cout<<"Sientes que tus pasos se tornan más pesados y la respiración más lenta. Unas siluetas amorfas cruzan tu camino.\n";
+        cout<<"~Sientes como una silueta se acerca y empieza a gritar con diferentes voces desgarradoras, pierdes la noción del sonido.";
+        cout<<"Susurro:~ Recuerda y observa. Cada vida perdida aquí, es un paso más a lo desconocido.~";
         cout<<pv;
         cout<<"\nIngresa 1 para continuar:\t";
         cin>>select;
@@ -498,12 +516,26 @@ void puertaincorrecta() {
 };
 void escaleras(){
     int i;
-    
-    for(i=1;i<=10;i++)
+    string escalones[] = {
+        "Subiste al primer escalón",
+        "Subiste al segundo escalón",
+        "Subiste al tercer escalón",
+        "Subiste al cuarto escalón",
+        "Subiste al quinto escalón",
+        "Subiste al sexto escalón",
+        "Subiste al séptimo escalón",
+        "Subiste al octavo escalón",
+        "Subiste al noveno escalón",
+        "Llegaste al final de la escalera"
+    };
 
+    
+    for(int i=0;i < 10;i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        cout<<"has subido un escalón\n";
+        system("clear");
+        cout<<escalones;
+        
     }
 
     if (i=10)
@@ -513,8 +545,8 @@ void escaleras(){
         do
         {
             system("clear");
-            cout<<"Llegaste al final de las escaleras";
-            cout<<"\nA lo lejos ves una figura que te está llamando";
+            cout<<"~Llegaste al final de las escaleras~";
+            cout<<"\nA la distancia observas una siluesta borrosa suplicando que te acerques";
             cout<<"\nIngresa 1 para acercarte";
             cin>>cerca;
         } while (!cerca);
@@ -522,3 +554,191 @@ void escaleras(){
     }
     
 };
+void interaccion_fantasma() {
+    int option;
+    int continuar;
+    do
+    {
+        system("clear");
+        cout<< R"(                                              ,'oOMMMW0xlokKNMMWK:        .:   
+                                             .c0NWWKx:'. .':c:;cokXXxc.      ..  
+                                          ..,oKMXd.    .;cd0Odlclold0Wk.      .  
+                                         .ldkNNd..,.  .lOKK0KKOOk0K00ONXd'       
+                                       ..oNNWXldkOldlloOWKN0kK0XNKOO0l,0WXk,     
+                                         '0MWdl00X0WXXXKxldkl;':okd:,,'.0MNx.    
+                                         .xWX;ckOOkkld:o'...   ..:',..'',WNOc.   
+                                        cxWM0.',:c'' ..           . .....dMW0d'  
+                                      .;ooOMo   ..                ..     'WMM0c  
+                                          :Nd            .;llc:l.. .      xWKO'  
+                                         .kWO    ....lcd;,':o;OXl. ..     ,WNx   
+                                          lXX' .::ol.:OONKoxNOOWd. .       KWNo. 
+                                         .lXWl. .lck:xWXMMMMMMkXk.         xMMO' 
+                                    . .. ;NMMx ..:oKKd0000WMMMNxd.         cMWO. 
+                                         ,lXMO ...,dNx0OddllxWNdo          .NMK;.
+                                        '..xW0  ....c0o:...,,OK:.           dMWd 
+                                         .'0Mk. ......,.,cklk,:   .         .KW0;
+                                       ';cXMMd'.. .       ... .....          'NMO
+                                      ..'dXMW;.   .     .''.;ox;.. .          cWW
+                                        .l0Mk':  .. ..cXNNll'cXl;;. .  . '....cOX
+                                      .;dNX0,,;. . .':kWNcd::XK;l.'... ' ,,..'cNK
+                                     .;0WO0d.l,.   ,,xOMX;Wlkcx,:.,. . '..,.,'x:0
+                                    ..oWOKKccc'    clKKM0;WlWd,c,...  .,..c;'::lx
+                                     .dNkNo0cc'.. .coNXMdoMlW;.c.;'.. c.',lO'o,Wx
+                                      ;0kNlX:o.;.. c:WNM;0WlW' c,;..' 0..;lK'dcN0
+)";
+        cout<<"\nAl acercarte ves que es una niña. No puedes verle el rostro.\nDe pronto te dice algo casí indescifrable.\n ";
+        cout<<"\nEn voz baja te susurra:\n\n\t\tP͖̃ensé ͙̻̤ͧ͊ͩqu̥̫ͧ͆ẽ̫͖̓ n̠ͧo t̰̗̝̃̑͌ẻ̼̳̪̈͂ ͉͚̦͆ͫ̔a͚c̪̥͎er̮̰̠ͫͭ̆c̝͙̩̓̐̃a̜ͮr͎ḭ́̃aͪs͖̝͆̅.̰ͭ. ̩͛¿̯̦ͮ͂Pṳ̙ed͆̚e͈ͅs͓̭͖͐̐̒ ay͇͎͑̚ụ̭̟̽̎̆darḿ͙è͍?ͮ͗̒ ̜̩̭̓͑͋n̟͒ẹ̝̐ͦc͖͙͓ͨͤͪe͍͖̮͆͒̂s̓͌̋i̫͎̖to͚̟̽͂ vo̦l͆v̘ͪer ͑a̼̠͎̍͐͐ ̬͍͙̀̒ͫc̲á͍͍̘̽͗sͯa ̙̲͎es ͉̐m̊u̲̝͋̔y ͓͓͕t̤̱̳͆̋ͯå͈͓̣̂͐rd͚̮̋̌̾ͅe̋̽̌\n\n";
+
+        cout<<"\n¿Que deseas hacer?\t\t";
+        cout<<"\n\n1) Ayudar\t 2)No ayudar\n";
+        cin>>continuar;
+
+        switch(continuar)
+        {
+        case 1:
+            ayudar=true;
+            break;
+        case 2:
+            ayudar=false;
+            break;
+            default:
+            break;
+
+    }
+    } while (!ayudar);
+
+};
+void help(){
+    int seguir;
+    do{
+        system("clear");
+        cout<<"\n";
+       cout<< R"(                                        00O000O000KKKXXXXXXXXXXXNNNXXXXXNNNNXNXXXXXXN
+                                        XKKXKKKKKKXXXXNXK0OkkxkO0XNNXXXXNNNNXXNNNNNXX
+                                        K0KKXKKKKXXKxc;..   ..   ..,cd0XNNNNXXNXXNNNX
+                                        XXXXXKXXKo,...    ..,;,.    ...,cxKXXXKK0XKXX
+                                        KXXXXXO:.... .';cx00KWWNkc;,';,:l;:xKXXXKXKXN
+                                        XXXXXl;ldl,.':oOXXW0NMMWWKdxkc,;co,'lOXXXNXXN
+                                        XXKK: .,cl,;lkOK0KOOXMWNK0Oxk0o......lKNXNNNX
+                                        KKKx.  ...,cddkxx0OxXWN0KOxxddd;.. ...dXXXNXN
+                                        KKKc.     ,doxkxxk0ONMWXKxxkOkxO:. ..'dXNXXNN
+                                        XK0;.     .00XKxxNNXNMWXNxxNWNOO,  ...c0NXXNN
+                                        0OO:.     .x0NNNXK000XKKOKXNKkcl'  ...,ckOKNN
+                                        xO0l.      :,',;;oxxxxxxdc:l;':d......,;odoxO
+                                        xkx;.      .o'';c;;OOxOkc.c,:ld. .....:;okxoo
+                                        000c;       .:lc:l.lOK0x;.coxc.  .....;;cxkdo
+                                        dxc,,        .'lxl:;:l:;;:dOcc.  . ....,':cc:
+                                        ;;.'.        '..'xkolccloxxccd,. .......':oxO
+                                        ,,..       ......,d0xlcoc;cxxdc'. .......;cdk
+                                        o....  ..  ....clcldkKkoodxKdll,... .....'cll
+                                        Kx,..  ...  ..clodkO0xxcdkkllkxl'..........;:
+                                        Xkl '. ... ..;:ccccodl,xkNO:,kNNK;..........;
+                                        XO:.... ......''',,;:,'dOxKXXKNNNX,.........,
+                                        Xk'..,,.  .... ..'.,:'.cxkk0KNNNX0:........':
+                                        NO;,..:... ........,,:c;;;;:ldoddlc.......:'.
+                                        XXd:l,,;.:...          ....... ..;:.''.,.',,'
+                                        NXx;O,,:'cd.                      ..,c.l..'.;)";
+        pv-=2;
+        cout<<"\n\n\tDe pronto la voz de la niña se torna gruesa y te grita:\n\n\t\t ¡ Ah̟̞̪̻̖̻̤̣̩o̬̬̘̯̺͎̹͍̤̪̤̓̑̄ͩͪ͐̓ͫ̾ͤ͆ͩͅr̺̻̄͐å̪̼̻̣̥͉̮̟̜̩͙̭͚̜̎̋ͣͭ͌̅͆̀͗ͦ͒̓ͮ ̼͕̟̺̞̘͙͕̰ͭ̆ͪ̑͛ͩͩ̂͆a͍̞ͫ̋l̙̣̠̞̜̘̝̣͒̇͗ͩ̆̽̇ͪé̘͔͍̜́͊̿̿j̺̳̹̯̤̗͓͖̺͕̟̼ͣ̈́̇̅͒̎͐̋͆̀̑ͮa̘̰̩̭̭̘͖͎̭t̤̰̯̠͈̣̜͉̗̞͍̹͉̘ͭ͌̏̅ͥ̽͊̀ͨ̈ͤ̀̄͌e͇͇͖̠̘͕̟̙̟̲̩̰̓͗ͩͧͦͮ͛̓ͤ̅̈́̽ͧͅ !\n\n"; 
+        cout<<"Perdiste dos de tus vidas.\n";
+        cout<<"Vidas: "<<pv;
+        cout<<"\nIngresa 1 para continuar:  ";
+        cin>>seguir;
+
+        
+
+
+    } while(!seguir);
+
+}
+void nohelp(){
+    int seguir;
+
+    do{
+        system("clear");
+         cout<< R"(                                        00O000O000KKKXXXXXXXXXXXNNNXXXXXNNNNXNXXXXXXN
+                                        XKKXKKKKKKXXXXNXK0OkkxkO0XNNXXXXNNNNXXNNNNNXX
+                                        K0KKXKKKKXXKxc;..   ..   ..,cd0XNNNNXXNXXNNNX
+                                        XXXXXKXXKo,...    ..,;,.    ...,cxKXXXKK0XKXX
+                                        KXXXXXO:.... .';cx00KWWNkc;,';,:l;:xKXXXKXKXN
+                                        XXXXXl;ldl,.':oOXXW0NMMWWKdxkc,;co,'lOXXXNXXN
+                                        XXKK: .,cl,;lkOK0KOOXMWNK0Oxk0o......lKNXNNNX
+                                        KKKx.  ...,cddkxx0OxXWN0KOxxddd;.. ...dXXXNXN
+                                        KKKc.     ,doxkxxk0ONMWXKxxkOkxO:. ..'dXNXXNN
+                                        XK0;.     .00XKxxNNXNMWXNxxNWNOO,  ...c0NXXNN
+                                        0OO:.     .x0NNNXK000XKKOKXNKkcl'  ...,ckOKNN
+                                        xO0l.      :,',;;oxxxxxxdc:l;':d......,;odoxO
+                                        xkx;.      .o'';c;;OOxOkc.c,:ld. .....:;okxoo
+                                        000c;       .:lc:l.lOK0x;.coxc.  .....;;cxkdo
+                                        dxc,,        .'lxl:;:l:;;:dOcc.  . ....,':cc:
+                                        ;;.'.        '..'xkolccloxxccd,. .......':oxO
+                                        ,,..       ......,d0xlcoc;cxxdc'. .......;cdk
+                                        o....  ..  ....clcldkKkoodxKdll,... .....'cll
+                                        Kx,..  ...  ..clodkO0xxcdkkllkxl'..........;:
+                                        Xkl '. ... ..;:ccccodl,xkNO:,kNNK;..........;
+                                        XO:.... ......''',,;:,'dOxKXXKNNNX,.........,
+                                        Xk'..,,.  .... ..'.,:'.cxkk0KNNNX0:........':
+                                        NO;,..:... ........,,:c;;;;:ldoddlc.......:'.
+                                        XXd:l,,;.:...          ....... ..;:.''.,.',,'
+                                        NXx;O,,:'cd.                      ..,c.l..'.;)";
+                        
+        cout<<"\n\tDe pronto la voz de la niña se torna gruesa y te grita con desesperación:\n\n\t\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n";
+        cin>>seguir;
+
+    }while (!seguir);
+ 
+}
+void espejo(){
+    int seguir;
+
+    do{
+        system("clear");
+        cout<<"\n";
+        cout<< R"(                                                         dlccc:::;;;,,,'''c   
+                                                        x      ';,.      o.  
+                                                        x    ,OKKK0x.    l.  
+                                                        d   .OKKXXKK0.   c'  
+                                .cxO00Okl;.             o   ,00KKKKKKl   :;  
+                                0KKKKKKKKOOo.           c.  ;k00KKK00x   ;:  
+                                O00KKKKKKKK0k.          ,   ,xOKXXK0Ok   ,c  
+                                0KKKKKKXKKK0Od          .  .lxOKKXX0O0,  'l  
+                                O0KXXXKK0KK0O0.         .,   xO0KKK0Od'  .d  
+                                k00KKKKK0OOOkO.          c   cx0O00Okc   .x  
+                                dOO0KK0K00kkOOO,         :    okkxkOx'   .k  
+                                xkOkO000O0OO0OOl         ;     oxkxd;     O  
+                                :xxxd0kkkOOOOOk                xxddd      0  
+                                 dxkd0xdxOkkkko          '   .:OO00O;     0  
+                                 oxkxKkxxdxxkko          ;xkOOOO0000Oo'   K  
+                                 dxk00Kxkl....           'OOO0000O0000OOo,K  
+                                 kxOKKKOOl                ..,:ldO0KOO00O00N  
+                                'kxk0K0Oxo                        .';coxOKN. 
+                                xkkkOOK0ox.                               .  
+                                OxkOk000kOk.                                 
+                                kkkOx0K0kOOk'                                
+                                0OOXd00Kx0Okk;                               
+                                0O0KxO0KkOOOkO:                              
+                                000OO0OK00OOO00o                             
+                                000kOK0KO0O0O00Ko   )";
+                         
+        cout<<"\n\tCorres para escapar y te encuentras en una habitación desolada.\n";
+        cout<<"\n\t\n\tSusurro: Falta poco...\n";
+        cout<<"\n\tObservas un espejo que te llama la atención y te acercas.\n";
+        cout<<"\n\t\n\tSusurro: Observate, n\n";
+        cout<<"Ingresa 1 para continuar:   ";
+        cin>>seguir;
+
+
+       
+        
+
+    } while(!seguir);
+
+
+
+    
+
+
+
+
+
+}

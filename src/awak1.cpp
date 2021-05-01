@@ -12,9 +12,7 @@ using namespace std;
 /*      Variables globales      */
 bool movimiento;
 bool ayudar;
-bool cruzar;
 int primermovimiento;
-int passcoin;
 int puerta;
 float pv = 10;
 
@@ -34,8 +32,8 @@ void interaccion_fantasma();
 void help();
 void nohelp();
 void espejo();
-void cruzandoespejo_si();
-void cruzandoespejo_no();
+void cruzandoespejo_ayudarfantasma();
+void cruzarespejo_rechazarfantasma();
 void desafiofinal();
 void finganar();
 void finperder();
@@ -43,179 +41,86 @@ void finperder();
 
 /*      Main principal      */
 int main() {
+
     menupr();
     juegopr();
-
-    if (movimiento == true && primermovimiento == 1)
+    if (movimiento == true && primermovimiento == 1)        // CAMINO "TE MUEVES Y EL ESPECTRO TE VE"
     {
-       moverte();
-       puertas(); 
-
-       if (puerta == 100)
-       {
-           puertaincorrecta();
-           escaleras();
-           interaccion_fantasma();
-
-           if (ayudar == true)
-           {
-               help();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }    
-           }
-           else if (ayudar == false)
-           {
-               nohelp();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }  
-           }   
-       }
-       else if (puerta == 300)
-       {
-           puertacorrecta();
-           escaleras();
-           interaccion_fantasma();
-
-           if (ayudar == true)
-           {
-               help();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                    cruzandoespejo_no();
-                    desafiofinal();
-               } 
-           }
-           else if (ayudar == false)
-           {
-               nohelp();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }
-           }  
-       }  
-    }
-    else if (movimiento == true && primermovimiento == 2)
+        pv--;
+        moverte();
+        puertas();
+        
+        if (puerta == 100)      // CAMINO PUERTA EQUIVOCADA DE CAMINO "TE MUEVES Y EL ESPECTRO TE VE"
+        {
+            puertaincorrecta();
+            escaleras();
+            interaccion_fantasma();
+            
+            if (ayudar == true)     //Camino ayudar
+            {
+                help();
+                espejo();
+            } else if (ayudar == false)
+            {
+                nohelp();
+                espejo();
+            };
+        } else if (puerta == 300)       //CAMINO PUERTA CORRECTA DE CAMINO "TE MUEVES Y EL ESPECTRO TE VE"
+        {
+            puertacorrecta();
+            escaleras();
+            interaccion_fantasma();
+            
+            if (ayudar == true)
+            {
+                help();
+                espejo();
+            } else if (ayudar == false)
+            {
+                nohelp();
+                espejo();
+            }
+        }
+        
+    } else if (movimiento == true && primermovimiento == 2)
     {
         nomoverte();
-        puertas(); 
-
+        puertas();
+        
         if (puerta == 100)
-       {
-           puertaincorrecta();
-           escaleras();
-           interaccion_fantasma();
+        {
+            puertaincorrecta();
+            escaleras();
+            interaccion_fantasma();
 
-           if (ayudar == true)
-           {
-               help();
-               espejo();
+            if (ayudar == true)
+            {
+                help();
+                espejo();
+            } else if (ayudar == false)
+            {
+                nohelp();
+                espejo();
+            }    
+        } else if (puerta == 300)
+        {
+            puertacorrecta();
+            escaleras();
+            interaccion_fantasma();
 
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }    
-           }
-           else if (ayudar == false)
-           {
-               nohelp();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }  
-           }   
-       }
-       else if (puerta == 300)
-       {
-           puertacorrecta();
-           escaleras();
-           interaccion_fantasma();
-
-           if (ayudar == true)
-           {
-               help();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                    cruzandoespejo_no();
-                    desafiofinal();
-               } 
-           }
-           else if (ayudar == false)
-           {
-               nohelp();
-               espejo();
-
-               if (cruzar == true)
-               {
-                   cruzandoespejo_si();
-                   desafiofinal();
-               }
-               else if (cruzar == false)
-               {
-                   cruzandoespejo_no();
-                   desafiofinal();
-               }
-           }  
-       }
+            if (ayudar == true)
+            {
+                help();
+                espejo();
+            } else if (ayudar == false)
+            {
+                nohelp();
+                espejo();
+            }    
+        }    
     }
-    return 0;    
-}
+};
+
 
 /*      Desgloce de funciones       */
 void menupr() {
@@ -382,7 +287,6 @@ void moverte() {
 
     do
     {
-        pv--;
         system("clear");
         cout<< R"(
                                         ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -570,7 +474,9 @@ void puertas() {
     while (next == true)
     {
         system("clear");
-        cout<<"\n";
+        cout<<"Recorres un largo y oscuro pasillo confundidx por el hecho de no tener una forma corpórea.";
+        cout<<"Observas siluetas avanzando junto a ti. Algunxs te observan, otras gritan, algunas se encDe pronto, observas dos puertas que llaman tu atención.";
+        cout<<"\n\nTe acercas";
         cout<<R"(
                                   _______________                           _______________
                                  |\ ___________ /|                         |\ ___________ /|
@@ -588,14 +494,7 @@ void puertas() {
                                  | |           | |                         | |           | |
                                  | |           | |                         | |           | |
                                  |_|___________|_|                         |_|___________|_|)";
-        cout<<"\n\n\n\nRecorres un largo y oscuro pasillo, tu cuerpo se vuelve cada vez más transparente. Te asustas.\n";
-        cout<<"\nObservas siluetas avanzando junto a ti. De pronto, observas dos puertas que llaman tu atención.\n";
-        cout<<"\nLa primera puerta tiene un número 100, se ve nueva y parece que hay alguien dentro.\n";
-        cout<<"\nLa segunda puerta tiene un número 300, esta puerta es vieja y un aire espectral sale de él.";
-        cout<<"\n\nSusurro: \"Elige cuidadosamente, en este lugar todo puede ser una trampa...\"";
-        cout<<"\n\n\n\n\nTe acercas";
-        cout<<"\n\n\n\nVidas: "<<pv;
-        cout<<"\nElegiste:  ";
+        cout<<"\n\nElegiste:  ";
         cin>>puerta;
 
         switch (puerta)
@@ -614,7 +513,7 @@ void puertas() {
 }
 
 void puertacorrecta() {
-    bool paso;
+    bool paso = true;
     int select;
 
     do
@@ -641,16 +540,15 @@ void puertacorrecta() {
         cout<<"\n\n~Susurro: ~Sigue avanzando...Estás más cerca de lo que crees~";
         cout<<"\nVidas:"<<pv;
         cout<<"\n\nIngresa 1 para continuar:  ";
-        cin>>select;
+        cin>>paso;
 
         if (select == 1)
         {
             system("clear");
-            paso = true;
-            passcoin = 1;
+            paso = false;
         }
         
-    } while (!paso && passcoin == 1);  
+    } while (paso);  
 }
 
 void puertaincorrecta() {
@@ -660,17 +558,13 @@ void puertaincorrecta() {
     do
     {
         system("clear");
-        cout<<"\nSientes que tus pasos se tornan más pesados y tu respiración más lenta. \t¡Las siluetas te atacan!\n";
-        cout<<"\nDiferentes voces desgarradoras se arremolinan por todo el cuarto, pierdes la noción del espacio.";
-        cout<<"\n\nCuando la habitación se calma observas tu mano y ya no puedes verla.";
-        cout<<"Susurro: ¡Te estás perdiendo! Si sigues perdiendo vidas así terminarás como ellos.";
-        cout<<"\n\nPerdiste 2 vidas.";
-        cout<<"\n\nFrente a ti se materializan unas escaleras.";
-        cout<<"\n\n\n\n\n\nSusurro: \"Debemos continuar, la prueba más grande aún te espera\"";
-        cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
+        pv -= 2;
+        cout<<"Sientes que tus pasos se tornan más pesados y la respiración más lenta. Unas siluetas amorfas cruzan tu camino.\n";
+        cout<<"~Sientes como una silueta se acerca y empieza a gritar con diferentes voces desgarradoras, pierdes la noción del sonido.";
+        cout<<"Susurro:~ Recuerda y observa. Cada vida perdida aquí, es un paso más a lo desconocido.~";
+        cout<<pv;
+        cout<<"\nIngresa 1 para continuar:\t";
         cin>>select;
-        system("clear");
 
         if (select == 1)
         {
@@ -683,23 +577,23 @@ void puertaincorrecta() {
 void escaleras() {      
     int i;
     string escalones[] = {
-        "Caminas\n",
-        "\n\n\n\n\n\n\n\n\n\n\n\nSubiste al primer escalón\n",
-        "\n\n\n\n\n\n\n\n\n\n\n\tSubiste al segundo escalón\n",
-        "\n\n\n\n\n\n\n\n\n\n\t\tSubiste al tercer escalón\n",
-        "\n\n\n\n\n\n\n\n\n\t\t\tSubiste al cuarto escalón\n",
-        "\n\n\n\n\n\n\n\n\t\t\t\tSubiste al quinto escalón\n",
-        "\n\n\n\n\n\n\n\t\t\t\t\tSubiste al sexto escalón\n",
-        "\n\n\n\n\n\n\t\t\t\t\t\tSubiste al séptimo escalón\n",
-        "\n\n\n\n\n\t\t\t\t\t\t\tSubiste al octavo escalón\n",
-        "\n\n\n\n\t\t\t\t\t\t\t\tSubiste al noveno escalón\n",
+        "Subiste al primer escalón\n",
+        "Subiste al segundo escalón\n",
+        "Subiste al tercer escalón\n",
+        "Subiste al cuarto escalón\n",
+        "Subiste al quinto escalón\n",
+        "Subiste al sexto escalón\n",
+        "Subiste al séptimo escalón\n",
+        "Subiste al octavo escalón\n",
+        "Subiste al noveno escalón\n",
+        "Llegaste al final de la escalera" 
     };
 
     for (i = 0; i < 10; i++)
     {
         if (i)
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(800));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             system("clear");
             cout<<escalones[i];
         }
@@ -712,11 +606,8 @@ void escaleras() {
 
         do
         {
-            system("clear");
-            cout<<"\n\n\nAl subir las escaleras miras a la distancia una siluesta borrosa.\n";
-            cout<<"Con señas te pide que te acerques.\nAunque te produce una sensación de peligro, decides acercarte.";
-            cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVidas: "<<pv;
-            cout<<"\nIngresa 1 para acercarte:   ";
+            cout<<"\nA la distancia observas una siluesta borrosa suplicando que te acerques";
+            cout<<"\nIngresa 1 para acercarte";
             cin>>cerca;
         } while (!cerca);        
     }
@@ -724,49 +615,10 @@ void escaleras() {
 
 void interaccion_fantasma() {
     int option;
-    int conta;
-    
-    do
-    {
-        system("clear");
-        cout<<"\n";
-        cout<< R"(                                              ,'oOMMMW0xlokKNMMWK:        .:   
-                                             .c0NWWKx:'. .':c:;cokXXxc.      ..  
-                                          ..,oKMXd.    .;cd0Odlclold0Wk.      .  
-                                         .ldkNNd..,.  .lOKK0KKOOk0K00ONXd'       
-                                       ..oNNWXldkOldlloOWKN0kK0XNKOO0l,0WXk,     
-                                         '0MWdl00X0WXXXKxldkl;':okd:,,'.0MNx.    
-                                         .xWX;ckOOkkld:o'...   ..:',..'',WNOc.   
-                                        cxWM0.',:c'' ..           . .....dMW0d'  
-                                      .;ooOMo   ..                ..     'WMM0c  
-                                          :Nd            .;llc:l.. .      xWKO'  
-                                         .kWO    ....lcd;,':o;OXl. ..     ,WNx   
-                                          lXX' .::ol.:OONKoxNOOWd. .       KWNo. 
-                                         .lXWl. .lck:xWXMMMMMMkXk.         xMMO' 
-                                    . .. ;NMMx ..:oKKd0000WMMMNxd.         cMWO. 
-                                         ,lXMO ...,dNx0OddllxWNdo          .NMK;.
-                                        '..xW0  ....c0o:...,,OK:.           dMWd 
-                                         .'0Mk. ......,.,cklk,:   .         .KW0;
-                                       ';cXMMd'.. .       ... .....          'NMO
-                                      ..'dXMW;.   .     .''.;ox;.. .          cWW
-                                        .l0Mk':  .. ..cXNNll'cXl;;. .  . '....cOX
-                                      .;dNX0,,;. . .':kWNcd::XK;l.'... ' ,,..'cNK
-                                     .;0WO0d.l,.   ,,xOMX;Wlkcx,:.,. . '..,.,'x:0
-                                    ..oWOKKccc'    clKKM0;WlWd,c,...  .,..c;'::lx
-                                     .dNkNo0cc'.. .coNXMdoMlW;.c.;'.. c.',lO'o,Wx
-                                      ;0kNlX:o.;.. c:WNM;0WlW' c,;..' 0..;lK'dcN0)";
-    cout<<"\n\nAl acercarte ves que es una niña. No puedes verle el rostro.\n\nSe acerca muy lento a ti y te dice algo casí indescifrable:\n ";
-    cout<<"\n\t\tP͖̃ensé ͙̻̤ͧ͊ͩqu̥̫ͧ͆ẽ̫͖̓ n̠ͧo t̰̗̝̃̑͌ẻ̼̳̪̈͂ ͉͚̦͆ͫ̔a͚c̪̥͎er̮̰̠ͫͭ̆c̝͙̩̓̐̃a̜ͮr͎ḭ́̃aͪs͖̝͆̅.̰ͭ. ̩͛¿̯̦ͮ͂Pṳ̙ed͆̚e͈ͅs͓̭͖͐̐̒ ay͇͎͑̚ụ̭̟̽̎̆darḿ͙è͍?ͮ͗̒ ̜̩̭̓͑͋n̟͒ẹ̝̐ͦc͖͙͓ͨͤͪe͍͖̮͆͒̂s̓͌̋i̫͎̖to͚̟̽͂ vo̦l͆v̘ͪer ͑a̼̠͎̍͐͐ ̬͍͙̀̒ͫc̲á͍͍̘̽͗sͯa ̙̲͎es ͉̐m̊u̲̝͋̔y ͓͓͕t̤̱̳͆̋ͯå͈͓̣̂͐rd͚̮̋̌̾ͅe̋̽̌.";
-    cout<<"\n\t\tN̻͉̫ḙ͎͎́ͣ̊c̭̻̣͖̪̩̮e̹̻̤̺͛̒̍̚s̩̣͎̑ͦͬỉ̾ͪͦ̈́ͮt̀ͅo̺̪͍̙͚͒ͧ̅ͮ̋ ͎͖̱̃̀̅q̗͎̫̫͓̾̋͊̈́ͬu̠̱̹͓ĕ͎̼̺̼̟͙͉͑̔͊̈͊͋ ̯͇̂̾m̖̝͈̜̖͉̃͋̏̈́͑́e̿̏ͣͮͧͤ ̣͚̙ͨͭ̅ͫͅd̘̅eṣ̮́̀ ̱͍ͬͨa̻̤͑ͮl̃̇̍ͭ̾̿̓g̯̞̮̰̫̋͒̐̍ͧo ̞̫ͯ̇tụ͖̖̳̳͈̩y̰ȍ̑̀͂ͩ͑̏ ̤ͪpa̬̤͓̪̓̋͆̚r͇̻̳̬̮̘͛ͩ̓̈̓͊a̬̰̤̬̹̯̒ͪ̐͛ͣ͗ ̟̳͐͆po̜̪̣͆ͣ̾de̊r̯͇̩͖̈̂͌ͭ ̓͑́͐͊̂v̠̘̏ͭö̩̬̎̄ͅl͖͙̬̾̉̈́v̪̤͕̝̒̅ͪͣḙ̟̙͙̬̜̘̈̎ͥ̍́ͧ́r̮̮ͬ͗ ̩̥̦͖̦ͣ̋̈̌ͬ͒ͅa c͚a͙̝̤̜̼s̖͔̱͚̜̍̍̓̿͛a͈̞.̐̑̎͌";
-    cout<<"\n\n\n\n\n\nVidas: "<<pv;
-    cout<<"\nIngresa 1 para continuar:   ";
-    cin>>conta;
-    } while(!conta);
+    int continuar;
 
-    
-        system("clear");
-        cout<<"\n";
-        cout<< R"(                                              ,'oOMMMW0xlokKNMMWK:        .:   
+    system("clear");
+    cout<< R"(                                              ,'oOMMMW0xlokKNMMWK:        .:   
                                              .c0NWWKx:'. .':c:;cokXXxc.      ..  
                                           ..,oKMXd.    .;cd0Odlclold0Wk.      .  
                                          .ldkNNd..,.  .lOKK0KKOOk0K00ONXd'       
@@ -791,24 +643,23 @@ void interaccion_fantasma() {
                                     ..oWOKKccc'    clKKM0;WlWd,c,...  .,..c;'::lx
                                      .dNkNo0cc'.. .coNXMdoMlW;.c.;'.. c.',lO'o,Wx
                                       ;0kNlX:o.;.. c:WNM;0WlW' c,;..' 0..;lK'dcN0)";
-        cout<<"\n\n\t\t\t\tS̟i͉̭̟̖͗ͮͤ́ ẗ̠̱́̎a̰̹n͔̩̠ ̬̯̜͎͌͂ͯ͑soͤ͊lͦo͈͖ͤ̉ ̩͕̳̥̦̀ͩ̈ͤ́p̈́̃̿̍͒͒ü̆̋d͕̤͉͙̖̊̌̊ͧͪi̯̓e̟͇̬͇̰̔ͯ̃̾̓r̲̼̜̣ȃ͖͕̯̳̏̽ͩs͍͎͙͔̼̯ͭ͂͛ͨ̔̔ ̤̖͇̪̟́̾̄ͣ͛da̜̻̺ͥͥ̔r̯͍̭͚͈̝̺͆̽͋̔̓ͤ̓mȇ̈́̅͛͛̌ ͩ̍͂͐̍ďos ͉͖͎̂̾̒d̞̰͂ͬe͈̔ ̿tû̇̄͊̚s̠̺͎̺͂ͬ̿̓ ̰̝͚́ͭ̈v̽ͤ̽̽̆̒̓ï̺̪̈́d̩̹̪aͨͨs͖̳͖͍̙̜̪.\n";
-        cout<<"\t\t\tA̎ cặmbỉ͑̑o͈̱̠ͩͯ͑ p̼͗ue̒͋d̰͎͔o̯͓ͮͯ ͧ̾̋da̜͙rt̻̭ͩ̆ē̜̩̻ͤ̎ a̳̘̲͋̾ͨl̀g͓̾o͇͕ͭ̊ q̇u̝̗̅͑eͬͯ ͪte̦͆ ̩͙̬̍̆͋s̬͉̍̉e͖ͦrá͚͙̾̉ ̗d̂ͨe̫ͮͨͅ ̲͆g̟̫͓ͮͭ̇r̻ͅȁ̦ṉ̣ͭ͛ ̞̲ͣ̀v͍͙̈́ͬal͖̱͎ͥͮ̉or̰͕ ̃e̺̤̓ͣn t͚̏͂ͅu̪̘̭̽ͥ̊ ̂v̖̰̦̄̽̅ia̻ͥj̟͎e.̪\n";
-        cout<<"\n\n\t\t\t\t\t1) Ayudar\t 2)No ayudar\n";
-        cout<<"\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\n¿Qué decides hacer\?   ";
-        cin>>option;
-        switch (option)
-        {
-        case 1:
-            ayudar = true;
-            break;
-        case 2:
-            ayudar = false;
-            break;
-        default:
-            break;
-        }
-    
+    cout<<"\nAl acercarte ves que es una niña. No puedes verle el rostro.\nDe pronto te dice algo casí indescifrable.\n ";
+    cout<<"\nEn voz baja te susurra:\n\n\t\tP͖̃ensé ͙̻̤ͧ͊ͩqu̥̫ͧ͆ẽ̫͖̓ n̠ͧo t̰̗̝̃̑͌ẻ̼̳̪̈͂ ͉͚̦͆ͫ̔a͚c̪̥͎er̮̰̠ͫͭ̆c̝͙̩̓̐̃a̜ͮr͎ḭ́̃aͪs͖̝͆̅.̰ͭ. ̩͛¿̯̦ͮ͂Pṳ̙ed͆̚e͈ͅs͓̭͖͐̐̒ ay͇͎͑̚ụ̭̟̽̎̆darḿ͙è͍?ͮ͗̒ ̜̩̭̓͑͋n̟͒ẹ̝̐ͦc͖͙͓ͨͤͪe͍͖̮͆͒̂s̓͌̋i̫͎̖to͚̟̽͂ vo̦l͆v̘ͪer ͑a̼̠͎̍͐͐ ̬͍͙̀̒ͫc̲á͍͍̘̽͗sͯa ̙̲͎es ͉̐m̊u̲̝͋̔y ͓͓͕t̤̱̳͆̋ͯå͈͓̣̂͐rd͚̮̋̌̾ͅe̋̽̌\n\n";
+    cout<<"\n¿Que deseas hacer?\t\t";
+    cout<<"\n\n1) Ayudar\t 2)No ayudar\n";
+    cin>>continuar;
+
+    switch (continuar)
+    {
+    case 1:
+        ayudar = true;
+        break;
+    case 2:
+        ayudar = false;
+        break;
+    default:
+        break;
+    }
 }
 
 void help() {
@@ -844,11 +695,9 @@ void help() {
                                         XXd:l,,;.:...          ....... ..;:.''.,.',,'
                                         NXx;O,,:'cd.                      ..,c.l..'.;)";
         pv -=2;
-        cout<<"\n\nAl aceptar su trato, lo que antes era una niña se convirtió en un monstruo.";
-        cout<<"\n\n\t\t\tE͖l n̒͐͐o͐̍m̜̿b͕ͮrĕ̽̓ d̯̳e̖͔͚ a̘͔̣͆̓ͤq̗͔ͧ͐u̐͑el̮̭ͤ̇l̗̪͎̾͛́o q̠̻̀̀ǔͭ̔e͓̱͓͛͐̇ t͒ͮ͌e̠̤ ̖͔̈́̽ac͕̑o͓̾m̳̪̌ͦpã̲̖̃ñ̯̙̲̓ͮ̂a ͨ̀es Å͓ZȀ̈̓Z̰͉͓ͯͬ̚E̴L\n";
-        cout<<"\t\t\tA͕͓͓̦̹̫̻̯ͧ͊̃ͬ̓͌̇͛ḩ̴̖͎̬o͕̜̙̤͙͉͕̠̲͈͉ͦ͒̑̊̎̀͗̊̒͒̋͡r̛͓͚̜̞̪̲̰̬̤̬̱͚͉ͮͪ̒̓ͤͩ̓͑ͤ͗͂̂͋̈͟͝ͅǎ̼̱͔̞͚̳͂̐ͫ̌̚,̛̮͈́͟ ̵͔̯͕̻̘͎̀͠¡҉V̶͖͔̗͔͈̮̞̟͇͕̠̘̾̀̌̎̄͑̽̉͆͌̿̏̆ͅe̜̘̣̩̙͔̲̪̳̭̩͖͈͗̈́͌ͥ̈͂ͬͤ̒̅̐̾̍t̬̻͍̼͕̣̘̫̅̒͊̊̋̍̿̇͘ȩ̀!̵͕̣̦̜̟͖̼̰̜̭̺̙ͪ̓ͧ͂̔̿̏ͤ̾̓̂̓\n";
-        cout<<"\n\n\nPerdiste 2 vidas.\n";
-        cout<<"\n\n\nVidas: "<<pv;
+        cout<<"\n\n\tDe pronto la voz de la niña se torna gruesa y te grita:\n\n\t\t ¡ Ah̟̞̪̻̖̻̤̣̩o̬̬̘̯̺͎̹͍̤̪̤̓̑̄ͩͪ͐̓ͫ̾ͤ͆ͩͅr̺̻̄͐å̪̼̻̣̥͉̮̟̜̩͙̭͚̜̎̋ͣͭ͌̅͆̀͗ͦ͒̓ͮ ̼͕̟̺̞̘͙͕̰ͭ̆ͪ̑͛ͩͩ̂͆a͍̞ͫ̋l̙̣̠̞̜̘̝̣͒̇͗ͩ̆̽̇ͪé̘͔͍̜́͊̿̿j̺̳̹̯̤̗͓͖̺͕̟̼ͣ̈́̇̅͒̎͐̋͆̀̑ͮa̘̰̩̭̭̘͖͎̭t̤̰̯̠͈̣̜͉̗̞͍̹͉̘ͭ͌̏̅ͥ̽͊̀ͨ̈ͤ̀̄͌e͇͇͖̠̘͕̟̙̟̲̩̰̓͗ͩͧͦͮ͛̓ͤ̅̈́̽ͧͅ !\n\n"; 
+        cout<<"Perdiste dos de tus vidas.\n";
+        cout<<"Vidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:  ";
         cin>>seguir;
     } while (!seguir); 
@@ -891,123 +740,42 @@ void nohelp() {
 }
 
 void espejo() {
-    bool seguir;
-    int opcion;
+    int seguir;
 
     do
     {
         system("clear");
         cout<<"\n";
-        cout<< R"(                                                             dlccc:::;;;,,,'''c   
-                                                            x      ';,.      o.  
-                                                            x    ,OKKK0x.    l.  
-                                                            d   .OKKXXKK0.   c'  
-                                    .cxO00Okl;.             o   ,00KKKKKKl   :;  
-                                    0KKKKKKKKOOo.           c.  ;k00KKK00x   ;:  
-                                    O00KKKKKKKK0k.          ,   ,xOKXXK0Ok   ,c  
-                                    0KKKKKKXKKK0Od          .  .lxOKKXX0O0,  'l  
-                                    O0KXXXKK0KK0O0.         .,   xO0KKK0Od'  .d  
-                                    k00KKKKK0OOOkO.          c   cx0O00Okc   .x  
-                                    dOO0KK0K00kkOOO,         :    okkxkOx'   .k  
-                                    xkOkO000O0OO0OOl         ;     oxkxd;     O  
-                                    :xxxd0kkkOOOOOk                xxddd      0  
-                                     dxkd0xdxOkkkko          '   .:OO00O;     0  
-                                     oxkxKkxxdxxkko          ;xkOOOO0000Oo'   K  
-                                     dxk00Kxkl....           'OOO0000O0000OOo,K  
-                                     kxOKKKOOl                ..,:ldO0KOO00O00N  
-                                    'kxk0K0Oxo                        .';coxOKN. 
-                                    xkkkOOK0ox.                               .  
-                                    OxkOk000kOk.                                 
-                                    kkkOx0K0kOOk'                                
-                                    0OOXd00Kx0Okk;                               
-                                    0O0KxO0KkOOOkO:                              
-                                    000OO0OK00OOO00o                             
-                                    000kOK0KO0O0O00Ko   )";
-        cout<<"\n\nCorres para escapar y te encuentras en una habitación desolada, dentro hay un pequeño espejo que te parece familiar.\n";
-        cout<<"\n\nSusurro: \"Falta poco...para poder continuar es necesario cruzar el espejo.\n";
-        cout<<"\t  Esta es una decisión dificil pues muy pocos son capaces de dar \n\t  el salto al vacío y perder un poco de sí mismos.";
-        cout<<"\n\nAl ver tu mano notas que te desvaneces más y más.\n";
-        cout<<"\n\t\t1) Entrar al espejo";
-        cout<<"\t\t2) No entrar al espejo";
-        cout<<"\nDecidiste:   ";
-        cin>>opcion;
-
-        switch (opcion)
-        {
-        case 1:
-            seguir = true;
-            cruzar = true;
-            break;
-        case 2:
-            seguir = true;
-            cruzar = false;
-            break;
-        default:
-            break;
-        }
+        cout<< R"(                                                         dlccc:::;;;,,,'''c   
+                                                        x      ';,.      o.  
+                                                        x    ,OKKK0x.    l.  
+                                                        d   .OKKXXKK0.   c'  
+                                .cxO00Okl;.             o   ,00KKKKKKl   :;  
+                                0KKKKKKKKOOo.           c.  ;k00KKK00x   ;:  
+                                O00KKKKKKKK0k.          ,   ,xOKXXK0Ok   ,c  
+                                0KKKKKKXKKK0Od          .  .lxOKKXX0O0,  'l  
+                                O0KXXXKK0KK0O0.         .,   xO0KKK0Od'  .d  
+                                k00KKKKK0OOOkO.          c   cx0O00Okc   .x  
+                                dOO0KK0K00kkOOO,         :    okkxkOx'   .k  
+                                xkOkO000O0OO0OOl         ;     oxkxd;     O  
+                                :xxxd0kkkOOOOOk                xxddd      0  
+                                 dxkd0xdxOkkkko          '   .:OO00O;     0  
+                                 oxkxKkxxdxxkko          ;xkOOOO0000Oo'   K  
+                                 dxk00Kxkl....           'OOO0000O0000OOo,K  
+                                 kxOKKKOOl                ..,:ldO0KOO00O00N  
+                                'kxk0K0Oxo                        .';coxOKN. 
+                                xkkkOOK0ox.                               .  
+                                OxkOk000kOk.                                 
+                                kkkOx0K0kOOk'                                
+                                0OOXd00Kx0Okk;                               
+                                0O0KxO0KkOOOkO:                              
+                                000OO0OK00OOO00o                             
+                                000kOK0KO0O0O00Ko   )";
+        cout<<"\n\tCorres para escapar y te encuentras en una habitación desolada.\n";
+        cout<<"\n\t\n\tSusurro: Falta poco...\n";
+        cout<<"\n\tObservas un espejo que te llama la atención y te acercas.\n";
+        cout<<"\n\t\n\tSusurro: Observate, n\n";
+        cout<<"Ingresa 1 para continuar:   ";
+        cin>>seguir;
     } while (!seguir);  
-};
-
-void cruzandoespejo_si() {
-    int conta;
-    int contb;
-    
-    do
-    {
-        pv -= 3;
-        system("clear");
-        cout<<"\nDecidiste entrar al espejo.";
-        cout<<"Al tocarlo, sientes cómo te absorbe poco a poco dentro de él.\n";
-        cout<<"Todo se vuelve oscuro por un momento pero tú sientes paz.";
-        cout<<"Has perdido 3 vidas";
-        cout<<"\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
-        cin>>conta;
-    } while (!conta);
-
-    do
-    {
-        system("clear");
-        pv += 5;
-        cout<<"Una luz ha salido del espejo, levitas y notas tu cuerpo más solido\n";
-        cout<<"El espejo te ha regalado 5 vidas";
-        cout<<"Susurro: \"Parece que el espejo te ha recompensado por tu valentía, te felicito, ahora debemos contnuar\"";
-        cout<<"\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
-        cin>>contb;
-    } while (!contb);   
-}
-
-void cruzandoespejo_no() {
-    int conta;
-    int contb;
-
-    do
-    {
-        pv -= 3;
-        system("clear");
-        cout<<"\nDecidiste alejarte del espejo.";
-        cout<<"Mientras te alejas, una energia te jala dentro del espejo y te obliga a enctrar .\n";
-        cout<<"Todo se vuelve oscuro por un momento y sientes miedo.";
-        cout<<"Has perdido 3 vidas";
-        cout<<"\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
-        cin>>conta;
-    } while (!conta);
-
-    do
-    {
-        system("clear");
-        cout<<"\nAl pasar al otro lado del espejo, éste se rompe y te trapa del otro lado.\n";
-        cout<<"Cada vez te pierdes más y más";
-         cout<<"Susurro: \"El espejo ha tenido qué guiarte por el camino y ha exijido su pago, ¡Vamos, estamos cerca!\"";
-        cout<<"\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
-        cin>>contb;
-    } while (!contb);   
-}
-
-void desafiofinal() {
-    system("clear");
-    cout<<"Aquí va el final :)";
 }

@@ -9,16 +9,10 @@
 using namespace std;
 
 /*      Variables globales      */
-bool finanimacion;
-bool ganar;
-bool movimiento;
-bool ayudar;
-bool cruzar;
+bool finanimacion, ganar, movimiento, ayudar, cruzar, azazel;
 bool gameover = false;
-bool azazel;
-int primermovimiento;
-int passcoin;
-int puerta;
+
+int primermovimiento, passcoin, puerta, vencer;
 float pv = 10;
 string nombre;
 
@@ -72,11 +66,29 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   if (vencer == 1)
+                   {
+                       finganar();
+                   }
+                   else if (vencer == 0)
+                   {
+                       finperder();
+                   }
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   if (vencer == 1)
+                   {
+                       finganar();
+                   }
+                   else if (vencer == 0)
+                   {
+                       finperder();
+                   }
                }    
            }
            else if (ayudar == false)
@@ -88,11 +100,22 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   if (vencer == 1)
+                   {
+                       finganar();
+                   }
+                   else if (vencer == 0)
+                   {
+                       finperder();
+                   }
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   
                }  
            }   
        }
@@ -111,11 +134,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                     cruzandoespejo_no();
                     desafiofinal();
+
+                    
                } 
            }
            else if (ayudar == false)
@@ -127,11 +154,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   
                }
            }  
        }  
@@ -156,11 +187,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   
                }    
            }
            else if (ayudar == false)
@@ -172,11 +207,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   
                }  
            }   
        }
@@ -195,11 +234,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                     cruzandoespejo_no();
                     desafiofinal();
+
+                    
                } 
            }
            else if (ayudar == false)
@@ -211,11 +254,15 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
+
+                   
                }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
+
+                   
                }
            }  
        }
@@ -566,7 +613,7 @@ void juegopr() {
                                                 ....                                                                    )";
         cout<< "\n\nAcabas de despertar y no estás segurx de lo que recuerdas.\nNo sientes tus manos ni tus piernas.\nLa habitación esta oscura.";
         cout<<"\nEscuchas un sonido.\n";
-        cout<<"\n\n~Susurro: No te muevas~";
+        cout<<"\n\n\t~Susurro: No te muevas~";
         cout<<"\n\n\n\n\n¿Qué decides hacer\?";
         cout<<"\n\n\n\t\t\t\t\t1)Moverte";
         cout<<"\t\t2)No moverte";
@@ -669,7 +716,7 @@ void moverte() {
             cout<<"\n\n\"¿Dejaste tu cuerpo atrás\? Tal vez ya ni siquiera lo sientes.\"\n";
             cout<<"\nObservas hacia abajo y te ves a ti acostado...\n";
             cout<<"Estas dormido, pero no estas realmente seguro de que solo es un sueño.\n";
-            cout<<"\n\nSusurro: \"~No puedes quedarte aquí, este lugar es peligroso.~\n";
+            cout<<"\n\n\tSusurro: \"~No puedes quedarte aquí, este lugar es peligroso.~\n";
             cout<<"\t ~No hay tiempo de responder preguntas, sé cuatelosx y presta atención a los detalles~\"";
             cout<<"\n\n\nVidas: "<<pv;
             cout<<"\nIngresa 1 para continuar:  ";cin>>contb;  
@@ -731,7 +778,7 @@ void quieneres() {
     do
     {
         system("clear");
-        cout<<"Aún no estas listo para saberlo.\n";
+        cout<<"Aún no estas listo para saberlo. Pero debes saber que hay poca voces confiables en este lugar. \n";
         cout<<"\n\n\n\t\t\t\t\t1)¿Dónde estoy?";
         cout<<"\t\t2)Volver";
         cout<<"\n";
@@ -758,8 +805,8 @@ void dondeestoy() {
     do
     {
         system("clear");
-        cout<<"\n\t~Pronto lo sabrás...~";
-        cout<<"\n\t~Nunca olvides la hora.~";
+        cout<<"\n\t~En el astral nada es lo que parece. ~";
+        cout<<"\n\t~Nunca olvides lo que observes o escuches. Tu destino dependerá de eso.~";
         cout<<"\n\n\n\t\t\t\t\t1)¿Quién eres?";
         cout<<"\t\t2)Volver";
         cout<<"\n";
@@ -803,7 +850,7 @@ void puertas() {
                                  | |           | |                         | |           | |
                                  | |           | |                         | |           | |
                                  |_|___________|_|                         |_|___________|_|)";
-        cout<<"\n\n\n\nRecorres un largo y oscuro pasillo, tu cuerpo se vuelve cada vez más translucido. Eso te aterra.\n";
+        cout<<"\n\n\n\nRecorres un largo y oscuro pasillo, tu cuerpo se vuelve cada vez más translúcido. Eso te aterra.\n";
         cout<<"\nObservas siluetas avanzando junto a ti. De pronto, observas dos puertas que llaman tu atención.\n";
         cout<<"\nLa primera puerta tiene un número 100, se ve nueva y parece que hay alguien dentro.\n";
         cout<<"\nLa segunda puerta tiene un número 300, esta puerta es vieja y un aire espectral sale de él.";
@@ -875,15 +922,42 @@ void puertaincorrecta() {
     do
     {
         system("clear");
-        cout<<"\nSientes que tus pasos se tornan más pesados y tu respiración más lenta. \t¡Las siluetas te atacan!\n";
+                cout<<"\n";
+            cout<< R"(
+                        ░░░░░░░░░░░░░░░░░░░░░▐░░░▐░░░░▐░░░▀░░░▄▀░░░▄▀░░░░▄█░░░░▄▀▀░░░
+                        ░░░░░░░░░░░░░░░░░░░░░█░░░█░░░░▀░░░░░░░░░░░░░░░░░█░░░▄█░░░░░░▄
+                        ░░░░░░░░░░░░░░░░░░░░░▌░░░▌░░░░▌░░░░▄█▀▀▀▀█░░░▄█░░▄█▀░░░▄▄█▀▀░
+                        ░░░░░░░░░░░░░░░░░░░░▐░░░█░░░░░░▄██▀░░░░░▄▀░░▀░░░░░░░░▀▀░░░░░░
+                        ░░░░░░░░░░░░░░░░░░░░▌░░▐░░░░░▄█▀░░░░░█▀▀░░░░░░░▄▄▄▄▄▄▄▄████░░
+                        ░░░░░░░░░░░░░░░░░░░█░░░▌░░░███░░░░▄▄█░░░░░░▄▄██▀▀▀▀▀░░░░░░▄░░
+                        ░░░░░░░░░░░░░░░░░░░▌░░░░░░██░░░░░█░░░░░▄██▀▀░░░░░░░░▄▄▄▄█▀░░░
+                        ░░░░░░░░░░░░░░░░░░░░░░░░███░░░░▐▀░░░▄██▀░░░░░░░░▄█▀▀░░░░░░░░░
+                        ░░░░░░░░░░░░░░░░░░▐░░░███░░░░░░▐▄███▀░░░░░░░▄█▀░░░░░░░░░░░░░░
+                        ░░░░░░░░░░░░░░░░░░▀░░▐██░░░░░░░░░░░░░░░░▄▄█▀░░░▄▄▄█▀▀▀▀▀▀▀▀▀█
+                        ░░░░░░░░░░░░░░░░░░▌░░██░░░░░░░░░░░░░░░██▄▄▄▄█▀▀░░░░░░░░▄▄▄▄▄█
+                        ░░░░░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░▀▀░░░░░░░░░▄▄▄▄█▀▀░░░░░░
+                        ░░░░░░░░░░░░░░░░░░▄██░░░░░░░░░░░░░░░░░░░░░▄▄█▀▀▀░░░░░░░░░░░░░
+                        ░░░░░░░░░░░░░░░░▄██░░░░░░░░░░░░░░░░░░░▄█▀▀░░░░░░░░░░▀▀▀▀▀▀▀▀▀
+                        ░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░░░░░░░▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄▄░░░
+                        ░░░░░░░░░░░░░░███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▌░░
+                        ░░░░░░░░░░░░▄██░░░░░░░░░░░░░░░░░░░░░░▐█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀░░░░░
+                        ░░░░░░░░░░░███▀░░░░░░░░░░░░░░░░░░░░░░░░▀▀█▄▄▄▄▄░░░░▀▀▀█▄▄▄▄▄░
+                        ░░░░░░░▄██▀░░░░░░░░░░░░░░░░░░░░░░░░░░░█▄▄░░░░░░▀▀▀█░░░▄░░░░░░
+                        ░░▄▄▄██▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█▀▀▀▀▀█▄▄▄▄▄▄█░░░▀▀█▄▄░
+                        ████▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄██▀░░█░░░░░░░░░░░░░░░░░░░░▄
+                        ▀░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▄▄██▀░█░░░░░█░░░░░█░░░░░░░█░░░░░▐
+                        ░░░░░░░░░░░░░░░░░░░░▄██▀▀▀▀▀░░░░░░░█░░░░░█░░░░░▀▄░░░░░░█░░░░░
+                        ░░░░░░░░░░░░░░░▄██▀▀░░░░░░░░░░░░█░░░█░░░░░█░░░░░░█░░░░░░░█░░░
+                        ░░░░░░░░░░░░▄██▀░░░░░░░░░░░░░░░░░█░░░░█░░░░░▄░░░░░▀░░░░░░░█░░)";
+        cout<<"\n\nSientes que tus pasos se tornan más pesados y tu respiración más lenta. \t¡Las siluetas te atacan!\n";
         cout<<"\nVoces desgarradoras se arremolinan por todo el cuarto, pierdes la noción del espacio.";
         cout<<"\n\nCuando la habitación se calma observas tu mano y es casí impercibible.";
-        cout<<"~Susurro: Te estás perdiendo... Si sigues perdiendo vidas terminarás como ellos.~";
-        cout<<"\n\nPerdiste 2 vidas.";
+        cout<<"\n\n\t~Susurro: Te estás perdiendo... Si sigues perdiendo vidas terminarás como ellos.~";
+        cout<<"\n\n\nPerdiste 2 vidas.";
         cout<<"\n\nFrente a ti se materializan unas escaleras.";
         cout<<"\n\n\n\n\n\nSusurro: \"~Debemos continuar, la prueba más grande aún te espera~\"";
         cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";
+        cout<<"\nIngresa 1 para continuar:";
         cin>>select;
         system("clear");
 
@@ -909,7 +983,19 @@ void escaleras() {
         "\n\n\n\n\n\t\t\t\t\t\t\tSubiste al octavo escalón\n",
         "\n\n\n\n\t\t\t\t\t\t\t\tSubiste al noveno escalón\n",
     };
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     for (i = 0; i < 10; i++)
     {
         if (i)
@@ -1103,6 +1189,7 @@ void nohelp() {
                                         XXd:l,,;.:...          ....... ..;:.''.,.',,'
                                         NXx;O,,:'cd.                      ..,c.l..'.;)";
         cout<<"\n\tDe pronto la voz de la niña se torna grave y te grita con desesperación:\n\n\t\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n";
+        cout<<"\n\tIngresa 1 para continuar:";
         cin>>seguir;
     } while (!seguir);
 }
@@ -1173,10 +1260,35 @@ void cruzandoespejo_si() {
     {
         pv -= 3;
         system("clear");
-        cout<<"\nDecidiste entrar al espejo.";
+        cout<<"\n";
+        cout<< R"(
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░█▌░░░█░░██
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░█▌░██░░░░█
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███▌█░░░░░▌█░▌░░░░█
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███▌█░░░░░██░░░░░░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████░░░░░█░███▄▄███
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████░░░░▐███▄▄▀░░▀░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██▌█▄▄████▀▀░░░░░░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█▄███░███░░▄█████▀▀
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▄▄▄▄████████████▄█▀░░░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█▀▀▀▀▀▀░░░░░▄▄▄▄█████████████▀▀░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░▄▄▀░░░░▄▄▄▄█▀▀▀▀█████████▀██▄▄░░░░░░░
+                                ░░░░░░░░░░░░░░░░▄▄▄▄█▀▀▀░░░░█▀▀░░░░▐░░░░░░██████████▄░▀█▄░░░░
+                                ▄▄▄▄▄█▀▀▀▀▀▀▀▀▀▀░░░░░░░░░░░░▄▄▄█▀▀██░░░░░░██▌▌░▀██░░░█░░▀██▄▄
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▄▌░░░░░░███░░░░██░░░██░░░░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀░░▄▄█░░░░░░███░░░░░██░░█░░░░░░
+                                ░░░░░░░░░░░░░░░▄▄▄▄▄▄░░░░░░░░░░█▀░░░░░░░░░███░░░░█████▄██░░░░
+                                ░░░░▄▄▄▄█▀▀▀▀▀▀░░░░░░▀▀▀▀▀▀▀▀▀▀░░░░░░░░░░░███░░░░░░░░░▐███▄░░
+                                █▀▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██▌░░░░░░░░░░░████▄
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███░█░░░░░░░░▐███▌█
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░░░░░░█░█░█
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░░░░░██░░░░
+                                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████░███████████░░░)";
+
+        cout<<"\n\nDecidiste entrar al espejo.";
         cout<<"Al tocarlo, sientes cómo te absorbe poco a poco dentro de él.\n";
         cout<<"Todo se vuelve oscuro por un momento. Pero tú sientes paz.";
-        cout<<"Has perdido 3 vidas";
+        cout<<"\n\n\nHas perdido 3 vidas";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>conta;
@@ -1188,7 +1300,7 @@ void cruzandoespejo_si() {
         pv += 2;
         cout<<"Una luz ha salido del espejo, observas que tu cuerpo lentamente se materializa r\n";
         cout<<"El espejo te ha regalado 2 vidas";
-        cout<<"Susurro: \"~Parece que el espejo ha recompensado tu valentía. Ahora debemos continuar~\"";
+        cout<<"\n\n\nSusurro: \"~Parece que el espejo ha recompensado tu valentía. Ahora debemos continuar~\"";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>contb;
@@ -1203,10 +1315,40 @@ void cruzandoespejo_no() {
     {
         pv -= 3;
         system("clear");
-        cout<<"\nDecidiste alejarte del espejo.";
-        cout<<"Mientras te alejas, voces y gritos emanan del espejo. Una energía te jala hacia del espejo y te obliga a entrar .\n";
+        cout<<"\n";
+        cout<< R"(
+                                    ▀█░░░░░░░░░░░░░░█▀▀▀███░░░░████░░░░░░░░░░░░░░███░░█░░█░██░
+                                    ░░█░░░▄▄█▀▀▀▀▀▀█░░░░░░█░░░░████░░░░░░░░░░░░░░█░░░██░░█░██░
+                                    ░░▐▄█▀░░░░░░░░░░▀▄░░░░░█▐▄░████░░░░░░░░░░░░░██████░░░█░░█░
+                                    ░░░▌░░░░░░░░░░░░░░░░░░░█▀░░████░░░░░░░░░░░░░█░█░░░░░░█░░░░
+                                    ░░░▌░░░░░░░░░░░░░░▌░░░█░░░░████░░░░░░░░░░░░░█░█░░░░░██░░░░
+                                    ░░█░░░░░░░░░░░░░░░▌░░█░░░░░████░░░░░░░░░░░░█░░░░░░░░█░░░░░
+                                    ░█░░░░░░░░░░░░░░░░▌░░░░░░░░████░░░░░░░░░░░░█░░░░░░░░░░░░░░
+                                    ░▌░░░░░░░░░░░░░░░░▌░▐░░░░░░████░░░░░░░░░░░██░░░░░░░░░░░░░░
+                                    ░▌░░░░░░░░░░░░░░░░▌░▐░░░░░░████░░░░░░░░░░░█░░░██████░░░░░░
+                                    ░▀▌░░░░░░░░░░░░░░░█░▐░░░░░░████░░░░░░░░░░░█░░░░█████████░░
+                                    ░░█░░░░░░░░░░░░░▐▀▀░░█░░░░░████░░░░░░░░████░░░░░░████████░
+                                    ░█▐░░░░░░░░░░░░░█░░░░██░░░░████░░░░░░░░█░░░░░░░░░░░░░░░░░░
+                                    ░░░▌░░░░░░░░░░░██▀▀▀▀░██▄░░████░░░░░░░░█░░░░░░░░░░░░░░░░░░
+                                    █░░█▄░░░░░░░░░▄░▐░░░░▐░░▌▀▀████░░░░░░░░█░░░░░░░░░░░░░░░░░░
+                                    ░░░░░█▄░░░░░▄█░░▐░░░░▐░░█░░████░░░░░░░░█░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░█▀▀▀▀▀█░░░▐░░░░▐░░▐░░████░░░░░░░░██░░░░░░░░░░░░░░░░░
+                                    ░░░░░░▌░░░░░▌░░░▐░░░░▐░░▐░░████░░░░░░░░░███░░░░░░░░░░░░░██
+                                    ░░░░░▐░░░░░▐▌░░░▌░░░░▐░░▐░░████░░░░░░░░░░░░█░░░░░░░░░░░░░░
+                                    ░░░░░█░░░░░▐█░░░░░░░░▐░░▐░░████░░░░░░░░░░░░█░░░░████████░░
+                                    ░░░░░▌░░░░░▐█░░█░░░░░▐░░█░░████░░░░░░░░░░░░██░░░░░░░██░███
+                                    ███████████████████████████████░░░░░░░░░░░░░██░░░░░░░██░░░
+                                    ███████████████████████████████░░░░░░░░░░░░░░██░░░░░░░███░
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███░░░░░░░██
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░░░░
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███░░░░░░
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░██░░░░░
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░█████
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░)";
+        cout<<"\n\nDecidiste alejarte del espejo.";
+        cout<<"\nMientras te alejas, voces y gritos emanan del espejo. Una energía te jala hacia del espejo y te obliga a entrar .\n";
         cout<<"Todo se vuelve oscuro por un momento y sientes miedo.";
-        cout<<"Has perdido 3 vidas";
+        cout<<"\n\n\nHas perdido 3 vidas";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>conta;
@@ -1215,9 +1357,36 @@ void cruzandoespejo_no() {
     do
     {
         system("clear");
-        cout<<"\nAl pasar al otro lado del espejo, éste se rompe y te atrapa del otro lado.\n";
+        cout<<"\n";
+            cout<< R"( 
+                                    ░░░░░░░░░░█░░░░░░░░█░░█▄▄░░░░░░█▀▌░░░░░░░░░█▀░░▌░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█▀▀▀▀▀▀█░▐░░░░▐░░░░░▐░░▐░░░░░░░▄▀░░░▐░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░█░░░░░▐░░░░░▐░░░▌░░░░░█░░░░░▐░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░░█░░░░░█░░░░▐░░░▌░░░░░░░░░░░▌░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░▄██░░░░░▐░░░░░░░▌░░░░▌░░░░░█░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░█░░░░█░░░█░░░░░░░░▌░░▄█░░░░█░░░░▄▄▌█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░▌░░░░░░░█░░░░░░░░█░░█░░░░░█░▄▄█▀░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█▄▄▄███░░░░░░░░▌░░░░░░█░░█░░░░▄▀░█░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░█░░█░░░░░░░▀▄░░░░█░░░░░░▄█▄█▀░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░▀█░░▀▀▀█░░░░░█░░░░░░░░▄█░▐░░░░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░█░░░░░▄░░░░░███████▀░░░░░▄▄▄▄▄▄▀▀▀░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░▄▄░░░░█░░░█████████░░░▄▀░░░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░░░░░░░░░░██████████░░░░░░░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█▄▄▄▄▄▄█▀▀▀▀░░░░░█████████░▄▄▄░░░░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░▄░░░░░▄▀░░░█████████░░░░░▀█▀▀█▄░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░░▄▀▀░░▄░░█████████░░░░░░▐░░░░░█░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░█░░░░█░░▀▀░███████░░░░░░░▐░░░░░░░██░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░▄█░░░░▀░░░░░░░░███░░▀▄░░░░░▐░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░█▀░░░░░▌░░░░░░░█████░░░░▀▀▄▄░▐░░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░▌░░░░░█░░░░░█████████░░░░░░░▀▀█░░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░░░█░░░░█████████████░░░░░░░░▐░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░█░░░░▐░░░░░█████████████▀▀█▄▄▄░░▐░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░██░░░░░▌░░░░░██████████████░░░░░▀▄▌░░░░░░█░░░░░░░░░
+                                    ░░░░░░░░░░█░░░░░▐░░░░░░███████████████░░░░░░▐░░░░░░█░░░░░░░░░)";
+
+        cout<<"\n\nAl pasar al otro lado del espejo, éste se rompe y te atrapa del otro lado.\n";
         cout<<"Cada vez te pierdes más y más";
-         cout<<"Susurro: \"~El espejo ha tenido qué guiarte por el camino y ha exijido algo a cambio. Quiza estas acercandote al destino final~\"";
+         cout<<"\n\tSusurro: \"~El espejo ha tenido qué guiarte por el camino y ha exijido algo a cambio. Quizá estas acercandote al destino final~\"";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>contb;
@@ -1227,59 +1396,429 @@ void cruzandoespejo_no() {
 void desafiofinal() {
 
     string nombre;
-    int conta, contb, contc;
+    int conta, contb, contc, contd;
 
-    
-
+    int dado1, dado2, dado3, dado4, dado5, total, conteo = 0;
+        float mainlife = pv, enemylife = pv-2;
+        bool gameover = false;
    
-    
-    
-     /*         system("clear");
-                cout<<"Continuas caminando hasta que sientes como tu cuerpo cae en caida libre dentro d un espiral.\n";
-                cout<<"De pronto, frenas en seco.";
-                cout<<"Llegaste a un espacio luminoso. Se te nubla la vista, no observas ni sientes nada.\n";
-                cout<<"Escuchas multiples voces acercándose a lo lejos mientras ves a una silueta oscure acercarse a la distancia\n";
-                cout<<"Todo se torna oscuro\n";
-                cout<<"Susurro: \"Debes enfrentar tu destino ahora. Tal vez pueda ayudarte si me das un nombre.";
-                cin>>nombre;
-                cout<<"\n\nIngresa 1 para continuar:   ";
+    if (azazel == true)
+    {
+        do{
+            system("clear");
+            cout<<"\n";
+                                        cout<< R"(
+                                        ░░░░████████████████░░░░▐░░░░░▌░░░████████████████████░░░░
+                                        ░░░░████████████████░░░░█░░░░░▌░░░░▌██████████████████░░░░
+                                        ░░░░████████████████░░░░▐░░░░█░░░▄▄▄▄▄████████████████░░░░
+                                        ░░░░██████████████▄█░░░░░░░░░░▄▀░░░░░░░░░░▀▄██████████░░░░
+                                        ░░░░██████████▀▀░░░░▀█░░░░░░▄█░░░░░░░░░░▐░░░▀█████████░░░░
+                                        ░░░░███████▀░░▄█░░░░░░▀▌██░██░░░░░░░░░░░▐█░░░█████████░░░░
+                                        ░░░░██████░░█▀░░░░░░░░░▌████░░▐▌░░░░░░░░░▐█░░░████████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░█░▌████░░▐█░░░░░░░░░░░█░░▐███████░░░░
+                                        ░░░░█████░░░░▄█▌░░░░██░▌███▐░░░█▌░░░░░▄▄▄░░░░░░███████░░░░
+                                        ░░░░████▐░░░████░░░█░░░▌░▀▀▐░░░░░░░░░█████░░░░░▐██████░░░░
+                                        ░░░░████▐░░████▌░░░░░░░█▐░░░█░░░░░░▐███████░░░░░██████░░░░
+                                        ░░░░████▐░█████░░░░░░░█▄░░░███░░░░░▐████████░░░░██████░░░░
+                                        ░░░░████▐█████░░░░░░░███▀▀█▌░░█░░░░░████████░░░░██████░░░░
+                                        ░░░░████░█░░░░░░░░▄█░█▀█░▐░░█░░█░░░░░░███████░░░██████░░░░
+                                        ░░░░████░█▀▀▀▀█▀█▀░░█░░█░█░░░████░░░░░░█████▌░░███████░░░░
+                                        ░░░░█████░░░░█░░▌░░░▌░░▌░██░░█░█▐▀▄░░░░░████░░░███████░░░░
+                                        ░░░░█████░░░█░░▐░░░░▌░█░░███░░█░█░░█▄░░░░░█▌░░░███████░░░░
+                                        ░░░░█████░░█░░░█░░░░▌░░░░▌██░░█░░▀░░██▄░░░░░░░████████░░░░
+                                        ░░░░████▌░░▌░░░█░░░░░▐░░░█░█░░██░░▀░░░░▀█▀▀▀▀▀░███████░░░░
+                                        ░░░░████▌░░█░░░░██▄░░░░░░░███▐░█▌░░░█░░░▐░▄░░░░░██████░░░░
+                                        ░░░░█████▄░▐░░░█░░░▀▄▄▄▄░░░░░░░██░░█░▀░░░▐░█░░░░░█████░░░░
+                                        ░░░░███████░█░░░░█▄▄░░░░░██░▌░██▌░░░░░░░░░█░▌░░░░▐████░░░░
+                                        ░░░░█████▄▐░░░░░░░░░▀░░░░████▄███░█░░░░█░░░█▌░░░░░████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░▐░░░▐█░██▌███▀▌░░░░▌░████░░░░░███░░░░
+                                        ░░░░███▀░░░░░░░░░█▀▌░▐░░░▐░█░█████░░░░░░███░░░░▄░░░██▌░░░░
+                                        ░░░░██░░░░░░░░░█▀░░░░█░░░▐█▄████░▌░▐██████▀▄▄░░░█░░░█▌░░░░
+                                        ░░░░▌░░░░░░░░▄█░░░██░▐░░░▐██░███░█▄▀▀░░░░▄▄▄▄▄▄▄▄▌░░░▌░░░░
+                                        ░░░░█░░░░░█░█░░░▄█░░█▀░░███▄██░████▀▀▀▀▀▀░░░░░░░░░░░██░░░░
+                                    )";
 
+            cout<<"\n\nContinuas caminando hasta que sientes como tu cuerpo cae en caida libre dentro de un espiral.\n";
+            cout<<"De pronto, frenas en seco.\n";
+            cout<<"Estás en un espacio luminoso. Se te nubla la vista, no observas ni sientes nada.\n";
+            cout<<"Escuchas multiples voces acercándose a lo lejos mientras ves a una silueta oscura acercarse a la distancia\n";
+            cout<<"Todo se torna oscuro\n";
+            cout<<"\n\tSusurro: \"Debes enfrentar tu destino ahora.";
+            cout<<"\nIngresa 1 para continuar:   ";
+            cin>>conta;
+        }while(!conta);
 
-     
-     */ 
+        do
+        {
+           system("clear");
+            cout<<"\n";
+            cout<< R"(
+                                        ░░░░████████████████░░░░▐░░░░░▌░░░████████████████████░░░░
+                                        ░░░░████████████████░░░░█░░░░░▌░░░░▌██████████████████░░░░
+                                        ░░░░████████████████░░░░▐░░░░█░░░▄▄▄▄▄████████████████░░░░
+                                        ░░░░██████████████▄█░░░░░░░░░░▄▀░░░░░░░░░░▀▄██████████░░░░
+                                        ░░░░██████████▀▀░░░░▀█░░░░░░▄█░░░░░░░░░░▐░░░▀█████████░░░░
+                                        ░░░░███████▀░░▄█░░░░░░▀▌██░██░░░░░░░░░░░▐█░░░█████████░░░░
+                                        ░░░░██████░░█▀░░░░░░░░░▌████░░▐▌░░░░░░░░░▐█░░░████████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░█░▌████░░▐█░░░░░░░░░░░█░░▐███████░░░░
+                                        ░░░░█████░░░░▄█▌░░░░██░▌███▐░░░█▌░░░░░▄▄▄░░░░░░███████░░░░
+                                        ░░░░████▐░░░████░░░█░░░▌░▀▀▐░░░░░░░░░█████░░░░░▐██████░░░░
+                                        ░░░░████▐░░████▌░░░░░░░█▐░░░█░░░░░░▐███████░░░░░██████░░░░
+                                        ░░░░████▐░█████░░░░░░░█▄░░░███░░░░░▐████████░░░░██████░░░░
+                                        ░░░░████▐█████░░░░░░░███▀▀█▌░░█░░░░░████████░░░░██████░░░░
+                                        ░░░░████░█░░░░░░░░▄█░█▀█░▐░░█░░█░░░░░░███████░░░██████░░░░
+                                        ░░░░████░█▀▀▀▀█▀█▀░░█░░█░█░░░████░░░░░░█████▌░░███████░░░░
+                                        ░░░░█████░░░░█░░▌░░░▌░░▌░██░░█░█▐▀▄░░░░░████░░░███████░░░░
+                                        ░░░░█████░░░█░░▐░░░░▌░█░░███░░█░█░░█▄░░░░░█▌░░░███████░░░░
+                                        ░░░░█████░░█░░░█░░░░▌░░░░▌██░░█░░▀░░██▄░░░░░░░████████░░░░
+                                        ░░░░████▌░░▌░░░█░░░░░▐░░░█░█░░██░░▀░░░░▀█▀▀▀▀▀░███████░░░░
+                                        ░░░░████▌░░█░░░░██▄░░░░░░░███▐░█▌░░░█░░░▐░▄░░░░░██████░░░░
+                                        ░░░░█████▄░▐░░░█░░░▀▄▄▄▄░░░░░░░██░░█░▀░░░▐░█░░░░░█████░░░░
+                                        ░░░░███████░█░░░░█▄▄░░░░░██░▌░██▌░░░░░░░░░█░▌░░░░▐████░░░░
+                                        ░░░░█████▄▐░░░░░░░░░▀░░░░████▄███░█░░░░█░░░█▌░░░░░████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░▐░░░▐█░██▌███▀▌░░░░▌░████░░░░░███░░░░
+                                        ░░░░███▀░░░░░░░░░█▀▌░▐░░░▐░█░█████░░░░░░███░░░░▄░░░██▌░░░░
+                                        ░░░░██░░░░░░░░░█▀░░░░█░░░▐█▄████░▌░▐██████▀▄▄░░░█░░░█▌░░░░
+                                        ░░░░▌░░░░░░░░▄█░░░██░▐░░░▐██░███░█▄▀▀░░░░▄▄▄▄▄▄▄▄▌░░░▌░░░░
+                                        ░░░░█░░░░░█░█░░░▄█░░█▀░░███▄██░████▀▀▀▀▀▀░░░░░░░░░░░██░░░░)";
+            cout<<"\n\nDe entre todas esas figuras, una sale de ellas, algo te resulta familiar en ella.";
+            cout<<"\n¡Es el susurro!, ha mostrado su verdadera naturaleza y se ha mostrado como un ente.\n";
+            cout<<"\nTal tez si supieras su nombre podrías defenderte";
+            cout<<"\nNombrarlo:   ";
+            cin>>nombre;
+            cout<<"\nIngresa 1 para continuar:   ";
+            cin>>contb;
+        } while (!contb);
+
+        do
+        {
+            system("clear");
+            cout<<"\nAl nombrar a "<<nombre<<" todo queda en penumbras y poco a poco la luz de una vela se enciende.\n";
+            cout<<"Hay una pequeña mesa entre tú y"<<nombre<<" en donde 5 dados con 8 caras esperan.";
+            cout<<"\n"<<nombre<<": Al entrar a este lugar tu destino se ha vuelto incierto, para poder arreglarlo jugaremos una partida de dados.\n";
+            cout<<"\n\tLas reglas serán las siguientes:";
+            cout<<"\n\t-Si la suma de los dados es mayor a 20, tú ganas";
+            cout<<"\n\t-Si la suma de los dados es menor a 20, yo gano";
+            cout<<"\n\t-Si la suma de los dados es 20, ambos perdemos";
+            cout<<"\n\nRepetiremos este juego hasta que alguno de los dos pierda toda su energía.\nAl nombrarme hiciste que comience con las mismas vidas que tú";
+            cout<<"\nIngresa 1 si estás listx:   ";
+            cin>>contc;
+        } while (!contc);
+
+        
+        
+
+        srand(time(NULL));
+
+        do
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            dado1 = ((rand()%5+1)+1);
+            dado2 = ((rand()%5+1)+1);
+            dado3 = ((rand()%5+1)+1);
+            dado4 = ((rand()%5+1)+1);
+            dado5 = ((rand()%5+1)+1);
+
+            total = (dado1 + dado2 + dado3 + dado4 + dado5);
+
+            if (total > 21)
+            {
+                enemylife -= .5f;
+                system("clear");
+                conteo++;
+                cout<<"Estamos en la ronda "<<conteo;
+                cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
+                cout<<"\n\n¡Ganaste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
+                cout<<"\n"<<nombre<<": "<<enemylife;
+                cout<<"\n\n\nEl juego continua...\n";
+            }
+            else if (total < 20)
+            {
+                mainlife -= .5f;
+                system("clear");
+                conteo++;
+                cout<<"Estamos en la ronda "<<conteo;
+                cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
+                cout<<"\n\n¡Perdiste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
+                cout<<"\n"<<nombre<<": "<<enemylife;
+                cout<<"\n\n\nEl juego continua...\n";
+
+                if (mainlife == 0 || enemylife == 0)
+                {
+                    gameover = true;
+                }  
+            }
+        } while (!gameover);
+
+        if (gameover == true)
+        {
+            if (mainlife > enemylife)
+            {
+                finganar();
+            }
+            else if (enemylife > mainlife)
+            {
+                finperder();
+            }   
+        } 
+    }
+    else if (azazel == false)
+    {
+       do{
+            system("clear");
+            cout<<"\n";
+                                        cout<< R"(
+                                        ░░░░████████████████░░░░▐░░░░░▌░░░████████████████████░░░░
+                                        ░░░░████████████████░░░░█░░░░░▌░░░░▌██████████████████░░░░
+                                        ░░░░████████████████░░░░▐░░░░█░░░▄▄▄▄▄████████████████░░░░
+                                        ░░░░██████████████▄█░░░░░░░░░░▄▀░░░░░░░░░░▀▄██████████░░░░
+                                        ░░░░██████████▀▀░░░░▀█░░░░░░▄█░░░░░░░░░░▐░░░▀█████████░░░░
+                                        ░░░░███████▀░░▄█░░░░░░▀▌██░██░░░░░░░░░░░▐█░░░█████████░░░░
+                                        ░░░░██████░░█▀░░░░░░░░░▌████░░▐▌░░░░░░░░░▐█░░░████████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░█░▌████░░▐█░░░░░░░░░░░█░░▐███████░░░░
+                                        ░░░░█████░░░░▄█▌░░░░██░▌███▐░░░█▌░░░░░▄▄▄░░░░░░███████░░░░
+                                        ░░░░████▐░░░████░░░█░░░▌░▀▀▐░░░░░░░░░█████░░░░░▐██████░░░░
+                                        ░░░░████▐░░████▌░░░░░░░█▐░░░█░░░░░░▐███████░░░░░██████░░░░
+                                        ░░░░████▐░█████░░░░░░░█▄░░░███░░░░░▐████████░░░░██████░░░░
+                                        ░░░░████▐█████░░░░░░░███▀▀█▌░░█░░░░░████████░░░░██████░░░░
+                                        ░░░░████░█░░░░░░░░▄█░█▀█░▐░░█░░█░░░░░░███████░░░██████░░░░
+                                        ░░░░████░█▀▀▀▀█▀█▀░░█░░█░█░░░████░░░░░░█████▌░░███████░░░░
+                                        ░░░░█████░░░░█░░▌░░░▌░░▌░██░░█░█▐▀▄░░░░░████░░░███████░░░░
+                                        ░░░░█████░░░█░░▐░░░░▌░█░░███░░█░█░░█▄░░░░░█▌░░░███████░░░░
+                                        ░░░░█████░░█░░░█░░░░▌░░░░▌██░░█░░▀░░██▄░░░░░░░████████░░░░
+                                        ░░░░████▌░░▌░░░█░░░░░▐░░░█░█░░██░░▀░░░░▀█▀▀▀▀▀░███████░░░░
+                                        ░░░░████▌░░█░░░░██▄░░░░░░░███▐░█▌░░░█░░░▐░▄░░░░░██████░░░░
+                                        ░░░░█████▄░▐░░░█░░░▀▄▄▄▄░░░░░░░██░░█░▀░░░▐░█░░░░░█████░░░░
+                                        ░░░░███████░█░░░░█▄▄░░░░░██░▌░██▌░░░░░░░░░█░▌░░░░▐████░░░░
+                                        ░░░░█████▄▐░░░░░░░░░▀░░░░████▄███░█░░░░█░░░█▌░░░░░████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░▐░░░▐█░██▌███▀▌░░░░▌░████░░░░░███░░░░
+                                        ░░░░███▀░░░░░░░░░█▀▌░▐░░░▐░█░█████░░░░░░███░░░░▄░░░██▌░░░░
+                                        ░░░░██░░░░░░░░░█▀░░░░█░░░▐█▄████░▌░▐██████▀▄▄░░░█░░░█▌░░░░
+                                        ░░░░▌░░░░░░░░▄█░░░██░▐░░░▐██░███░█▄▀▀░░░░▄▄▄▄▄▄▄▄▌░░░▌░░░░
+                                        ░░░░█░░░░░█░█░░░▄█░░█▀░░███▄██░████▀▀▀▀▀▀░░░░░░░░░░░██░░░░
+                                    )";
+
+            cout<<"\n\nContinuas caminando hasta que sientes como tu cuerpo cae en caida libre dentro de un espiral.\n";
+            cout<<"De pronto, frenas en seco.\n";
+            cout<<"Estás en un espacio luminoso. Se te nubla la vista, no observas ni sientes nada.\n";
+            cout<<"Escuchas multiples voces acercándose a lo lejos mientras ves a una silueta oscura acercarse a la distancia\n";
+            cout<<"Todo se torna oscuro\n";
+            cout<<"\n\tSusurro: \"Debes enfrentar tu destino ahora.";
+            cout<<"\nIngresa 1 para continuar:   ";
+            cin>>conta;
+        }while(!conta);
+
+        do
+        {
+           system("clear");
+            cout<<"\n";
+            cout<< R"(
+                                        ░░░░████████████████░░░░▐░░░░░▌░░░████████████████████░░░░
+                                        ░░░░████████████████░░░░█░░░░░▌░░░░▌██████████████████░░░░
+                                        ░░░░████████████████░░░░▐░░░░█░░░▄▄▄▄▄████████████████░░░░
+                                        ░░░░██████████████▄█░░░░░░░░░░▄▀░░░░░░░░░░▀▄██████████░░░░
+                                        ░░░░██████████▀▀░░░░▀█░░░░░░▄█░░░░░░░░░░▐░░░▀█████████░░░░
+                                        ░░░░███████▀░░▄█░░░░░░▀▌██░██░░░░░░░░░░░▐█░░░█████████░░░░
+                                        ░░░░██████░░█▀░░░░░░░░░▌████░░▐▌░░░░░░░░░▐█░░░████████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░█░▌████░░▐█░░░░░░░░░░░█░░▐███████░░░░
+                                        ░░░░█████░░░░▄█▌░░░░██░▌███▐░░░█▌░░░░░▄▄▄░░░░░░███████░░░░
+                                        ░░░░████▐░░░████░░░█░░░▌░▀▀▐░░░░░░░░░█████░░░░░▐██████░░░░
+                                        ░░░░████▐░░████▌░░░░░░░█▐░░░█░░░░░░▐███████░░░░░██████░░░░
+                                        ░░░░████▐░█████░░░░░░░█▄░░░███░░░░░▐████████░░░░██████░░░░
+                                        ░░░░████▐█████░░░░░░░███▀▀█▌░░█░░░░░████████░░░░██████░░░░
+                                        ░░░░████░█░░░░░░░░▄█░█▀█░▐░░█░░█░░░░░░███████░░░██████░░░░
+                                        ░░░░████░█▀▀▀▀█▀█▀░░█░░█░█░░░████░░░░░░█████▌░░███████░░░░
+                                        ░░░░█████░░░░█░░▌░░░▌░░▌░██░░█░█▐▀▄░░░░░████░░░███████░░░░
+                                        ░░░░█████░░░█░░▐░░░░▌░█░░███░░█░█░░█▄░░░░░█▌░░░███████░░░░
+                                        ░░░░█████░░█░░░█░░░░▌░░░░▌██░░█░░▀░░██▄░░░░░░░████████░░░░
+                                        ░░░░████▌░░▌░░░█░░░░░▐░░░█░█░░██░░▀░░░░▀█▀▀▀▀▀░███████░░░░
+                                        ░░░░████▌░░█░░░░██▄░░░░░░░███▐░█▌░░░█░░░▐░▄░░░░░██████░░░░
+                                        ░░░░█████▄░▐░░░█░░░▀▄▄▄▄░░░░░░░██░░█░▀░░░▐░█░░░░░█████░░░░
+                                        ░░░░███████░█░░░░█▄▄░░░░░██░▌░██▌░░░░░░░░░█░▌░░░░▐████░░░░
+                                        ░░░░█████▄▐░░░░░░░░░▀░░░░████▄███░█░░░░█░░░█▌░░░░░████░░░░
+                                        ░░░░█████░▐░░░░░░░░░░▐░░░▐█░██▌███▀▌░░░░▌░████░░░░░███░░░░
+                                        ░░░░███▀░░░░░░░░░█▀▌░▐░░░▐░█░█████░░░░░░███░░░░▄░░░██▌░░░░
+                                        ░░░░██░░░░░░░░░█▀░░░░█░░░▐█▄████░▌░▐██████▀▄▄░░░█░░░█▌░░░░
+                                        ░░░░▌░░░░░░░░▄█░░░██░▐░░░▐██░███░█▄▀▀░░░░▄▄▄▄▄▄▄▄▌░░░▌░░░░
+                                        ░░░░█░░░░░█░█░░░▄█░░█▀░░███▄██░████▀▀▀▀▀▀░░░░░░░░░░░██░░░░)";
+            cout<<"\n\nDe entre todas esas figuras, una sale de ellas, algo te resulta familiar en ella.";
+            cout<<"\n¡Es el susurro!, ha mostrado su verdadera naturaleza y se ha mostrado como un ente.\n";
+            cout<<"\nAl no saber su nombre no has podido hacer nada, ojalá hubieras podido defenderte";
+            cout<<"\nIngresa 1 para continuar:   ";
+            cin>>contb;
+        } while (!contb);
+        do
+        {
+            system("clear");
+            cout<<"El ente ha hecho que todo queda en penumbras y poco a poco la luz de una vela se enciende.\n";
+            cout<<"Hay una pequeña mesa entre tú y el ente en donde 5 dados con 8 caras esperan.";
+            cout<<"\nEnte: Al entrar a este lugar tu destino se ha vuelto incierto, para poder arreglarlo jugaremos una partida de dados.\n";
+            cout<<"\n\tLas reglas serán las siguientes:";
+            cout<<"\n\t-Si la suma de los dados es mayor a 20, tú ganas";
+            cout<<"\n\t-Si la suma de los dados es menor a 20, yo gano";
+            cout<<"\n\t-Si la suma de los dados es 20, ambos perdemos";
+            cout<<"\n\nRepetiremos este juego hasta que alguno de los dos pierda toda su energía.\nAl nombrarme hiciste que comience con las mismas vidas que tú";
+            cout<<"\nIngresa 1 si estás listx:   ";
+            cin>>contc;
+        } while (!contc);
+
+        int dado1, dado2, dado3, dado4, dado5, total, conteo = 0;
+        float mainlife = pv, enemylife = pv-2;
+        bool gameover = false;
+        nombre = "Ente";
+
+        srand(time(NULL));
+
+        do
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            dado1 = ((rand()%5+1)+1);
+            dado2 = ((rand()%5+1)+1);
+            dado3 = ((rand()%5+1)+1);
+            dado4 = ((rand()%5+1)+1);
+            dado5 = ((rand()%5+1)+1);
+
+            total = (dado1 + dado2 + dado3 + dado4 + dado5);
+
+            if (total > 21)
+            {
+                enemylife -= .5f;
+                system("clear");
+                conteo++;
+                cout<<"Estamos en la ronda "<<conteo;
+                cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
+                cout<<"\n\n¡Ganaste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
+                cout<<"\n"<<nombre<<": "<<enemylife;
+                cout<<"\n\n\nEl juego continua...\n";
+            }
+            else if (total < 20)
+            {
+                mainlife -= .5f;
+                system("clear");
+                conteo++;
+                cout<<"Estamos en la ronda "<<conteo;
+                cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
+                cout<<"\n\n¡Perdiste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
+                cout<<"\n"<<nombre<<": "<<enemylife;
+                cout<<"\n\n\nEl juego continua...\n";
+
+                if (mainlife == 0 || enemylife == 0)
+                {
+                    gameover = true;
+                    while (gameover == true)
+                    {
+                        if (mainlife > enemylife)
+                        {
+                            finganar();
+                        }
+                        else if (enemylife > mainlife)
+                        {
+                            finperder();
+                        }    
+                    } 
+                }  
+            }
+        } while (!gameover);
+    } 
+    
 }
 
 void finganar(){
+    int conta;
+    
     do{
         system("clear");
-        cout<<"\nSientes a hilo arrastrarte desde el pecho y la velocidad de su movimiento es tan rápida que no logras observar nada a tu alrededor.\n";
-        cout<<"Sientes que el oxígeno regresa a tu cuerpo. Das un suspiro, sientes de poco a poco tus extremidades , abres los ojos lentamentente.\n"; 
-        cout<<"Todo parece estar normal. ¿Fue un sueño? Sabes que no. Pero sonríes al saber que terminó.";
-        
+        cout<<"\n";
+        cout<<R"(
+                                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐██░░██████
+                                    ░░░░░▄▄▀▀█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐█▐░░▐▐████
+                                    ░░░░▐░░░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐█▐░░▐▐▐███
+                                    ░░░░▐░█░░▐█░▐░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐█▐░░▐▐▐███
+                                    ░░░░░█░▌░░██░▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░▌░░█░███
+                                    ░░░░░░█▄░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█▌▌░░▌▄███
+                                    ░░░░░░░░█▄░░░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███▄██░▐██
+                                    ░░░░░░░░░░▌░░░░▀█▄▄░░░░░░░░░░░░░░░░░░░░░░░▄▄█▀▀▀▀▀▀▐▀█░░█░▐█▐
+                                    ░░░░░░░░░█░░░░░░░░███▄▄▄▄░░░░░░░░░░░░░░░█▀░░░░░░░░░░▌██░█░░██
+                                    ░░░░░░░░█░░░░░░░░░▄▀▄▄█▀▀██▄▄▄▄▄▄▄▄▄▄▄▄▀░░░░░░░░░░░░█▐▀░██░██
+                                    ░░░░░░░▐░░░▄▄░░░░░▐▀░░░█▀░░█▀░░░░░░░░░░░░░░░░░░░░░░░█░▌█▐░▄▐█
+                                    ░░░░░░░▐░░▐░░█▄░░░░░▄█▀░░██░░░░░░░░░░░░░░░░░░░░░░░░░▐░▐░█░░██
+                                    ░░░░░░░▐░░▀░░▌░█░░▐░░░░▄▀█░▄░░░░░░░░░░░░░░░░░░░░░░░░░█░▌░█░░█
+                                    ░░░░░░░█░▐░░▐░░░██░░░░▀░░▐░░█░░░░░░░░░░░░░░░░░░░░░░░░▐░░░▐█▄█
+                                    ░░░░░░░▌░█░░▐░░█░░▀█▄░░░░█░░░░█░░░░░░░░░░░░░░░░░░░░░░░█░▐███▐
+                                    ░░░░░░░▌░▌░░▐░░▌░░░░░▀█░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░▐█░▐█░█
+                                    ░░░░░░▐░▐░░░█░▐░░░░░░░██░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░██░███
+                                    ░░░░░░█░▀░░▐░░▐░░░░░░░▐█░░░░▄░░░░▌░░░░░░░░░░░░░░░░░░░░░░██░██
+                                    ░░░░░█░░▌░░█░░▌░░░░░░░▐█░░░░█░░░░█░░░░░░░░░░░░░░░░░░░░░░░█▄░█
+                                    ░░░░░█▄░▌░░██░▌░░░░░░░▐█░░░░█░░░░▐░░░░░░░░░░░░░░░░░░░░░░░░█░▐
+                                    ░░░░░█░█▌░░█░█▌░░░░░░░▐█░░░░█░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░██
+                                    ░░░░░▌█░░░░█▌▐░░░░░░░░██░░░░█░░░░▌░░░░░░░░░░░░░░░░░░░░░░░░░░█
+                                    ░░░░░▌█░░░░░░░░░░░░▄▄█░░░░░▄█░░░░▌░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░░░▄▄▄▄████▀▀▀░░░░▄▄█▀░░░░░░▌░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░░█░░░░░░░░░░░▄▄▀▀░░░░░░░▄█▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░░▌░░░░▄▄▄▄█▀▀░░░░░░▄▄▄█▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░░▌░░█▀░░░░░░░░▄▄█▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░▐░░░▌░░░▄▄█▀▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    ░░░░░░▐▄▄█░░▄█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                                    )";
 
-        
-    }while (gameover == true && ganar== true);
-    /*cout<<"\nSientes a hilo arrastrarte desde el pecho y la velocidad de su movimiento es tan rápida que no logras observar nada a tu alrededor.\n"; 
-    cout<<"Sientes que el oxígeno regresa a tu cuerpo. Das un suspiro, sientes de poco a poco tus extremidades , abres los ojos lentamentente.\n"; 
-    cout<<"Todo parece estar normal. ¿Fue un sueño? Sabes que no. Pero sonríes al saber que termino.";*/
+
+        cout<<"\n\nEl ente cae con fuerza al suelo y se convierte en polvo.\n";
+        cout<<"Un portal se abre, te toma desde el pecho y te arrastra.\n";
+        cout<<"El oxígeno regresa a tu cuerpo.Suspiras, sientes de poco a poco tus extremidades. Abres los ojos lentamentente.\n"; 
+        cout<<"Despertaste. Sabes que no fue un sueño, pero sonríes al saber que terminó.";
+        cout<<"Ingresa 1 para continuar:   ";
+        cin>>conta;
+    }while (!conta);
 
 }
 void finperder(){
+    int conta, contb;
+
     do{
         system("clear");
-        cout<<"\nLa oscuridad es cada vez más etérea. Dejas de oír las voces, quieres correr pero no puedes.\n"; 
-        cout<<"Sabes que ya no hay un camino de regreso. No sabes como llegaste ahí y empiezas a olvidar todo lo se pasaste en el camino.\n";
-        cout<<"Observas como te vas tornando en unx de ellxs. Tu cuerpo va mutando hasta convertirse en silueta oscura y alargada.\n";
-        cout<<"Quieres gritar pero solo percibes gritos y lamentos, la mente se te nubla. El último pensamiento que había de ti se desvanece.\n";
-        cout<<"\n\n\n\tGAME OVER";
+        cout<<"\n";
+        cout<<R"(
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█▀█░█░░██▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░▐█░█░░░█░▀█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███▄▀░░█░▄▄▄▄▄▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐██████░░█████░▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐▀█▀█░░░░░▀██▐░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐░▐░▌░████▐░▐▐░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐░▐░░▐████▐░▐░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▐░░░░▐████▐░░░░▌░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█▄░█░░████▐░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░███░░░▀▀░░░▄█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀▌░░░█▐▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▌▌░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▌█░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░█░▐▐░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▄███▀███░▌░▐░░███▄▄▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░░█▀▀▀▀▀░░▄█▀░░░▌░▐░░▐▐▄░░░░░▀█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░▄▄█▀█░░░░░▌░▐░░▐░░░▀▀▀▀█░█░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░░░███▀▀██▀░░░░░░░░█░░░░░▐░▀█▄▄▄▄▄▌░█░░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░░░█░░▐░░░█░░░░▌░░░▄░░░▐░░░░▄░▐░░░░░█░░█░░░░░░░░░░░░░░░░░░░░░░░░░
+                ░░░░░░░░░░░░░░░░░░░░░▄▀░░░█▄█▀░▄██░░░░█░░░░█░░░░▐░░▌░▐█░░░▄░█░░░░░░░░░░░░░░░░░░░░░░░░
+                ░▄▌░░░░░░░░▄██░░░░░░█░░░░█░░░▄█░░▐░░░██░░▐░░░░░░░▌░█░▐░▀█░░▄░▀▄░░░░░░░░░░░░░░░█░░░░░░
+                ▐█░░▄█▀▀▀▀▀░░░░░░░▄███▀░█░░▄▀░░░░▐░░▀░▐░░▐░░░█▀▀▀░░▐░█░░░█▄░█░░█░░░░░░░░░░░░░░█▌░░░░░
+                █░░██░░░░░░░░░░░░█░░░░░░██▀░░░░░░▐░▌░░▐░░▐▀▄░░░░░░░▐░▌░░░░░█▀░░░█░░░░░░░░░░░░░░▀█░░░░
+                █▄██░░░░░░█░░░░░█░░░█░░█░░░░░░░░░▐░░░▐▀░░▐▄░▀▀█▄░░█▀▐░░░░░░░█░░░███░░░░░░░░░░▄░░░█░░░
+                ███░░░░░█▀░░░░█░░░░█░█░░░░░░░░░░░█░░░░▄░░░░█░░░▐░░▌░█░░░░░░░░░█░░▀██▄░░░░░░░░░▀█░░██░
+                )";
+
+        cout<<"\nLa oscuridad te absorve. Las voces se agolpan dentro de ti mientras tu cuerpo se funde con ellas.\n"; 
+        cout<<"Ya no hay un camino de regreso. Te olvidas de ti y todo lo que pasaste en el camino.\n";
+        cout<<"Ya eres parte de la noche, ahora eres un alma que recorre el mundo de los sueños.\n";
+        cout<<"\nIngresa 1 para continuar";
+        cin>>conta;
 
 
 
-    }while (gameover == true && ganar== false);
-    /*cout<<"\nLa oscuridad es cada vez más etérea. Dejas de oír las voces, quieres correr pero no puedes.\n"; 
-    cout<<"Sabes que ya no hay un camino de regreso. No sabes como llegaste ahí y empiezas a olvidar todo lo se pasaste en el camino.\n";
-    cout<<"Observas como te vas tornando en unx de ellxs. Tu cuerpo va mutando hasta convertirse en silueta oscura y alargada.\n";
-    cout<<"Quieres gritar pero solo percibes gritos y lamentos, la mente se te nubla. El último pensamiento que había de ti se desvanece.\n";
-    cout<<"\n\n\n\tGAME OVER";
-*/
+    }while (!conta);
+
+
 }

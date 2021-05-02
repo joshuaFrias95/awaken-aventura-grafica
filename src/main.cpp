@@ -2,10 +2,8 @@
 //Torrejón Torres Nadia
 //Frías Hernández Joshua
 
-#include <cstdlib>
 #include <iostream>
 #include <string>
-#include <ctime>
 #include <thread>
 
 using namespace std;
@@ -916,7 +914,7 @@ void escaleras() {
     {
         if (i)
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(800));
+            std::this_thread::sleep_for(std::chrono::milliseconds(600));
             system("clear");
             cout<<escalones[i];
         }
@@ -1227,49 +1225,24 @@ void cruzandoespejo_no() {
 }
 
 void desafiofinal() {
+
     string nombre;
-    //Variables combate jugador
-    float pvcombate = pv;
-    float tuventaja;
-    //Variables combate ente
-    float pvente = pv + 2;
-    float suventaja;
+    int conta, contb, contc;
 
-    do
-    {
-        if (pvcombate >= 5)
-        {
-            system("clear");
-            cout<<"Tienes más de 5 vidas";
-        }
-        else if (pvcombate < 5)
-        {
-            system("clear");
-            cout<<"Tienes menos de 5 vidas";
-        }
-        
-        
-        
-    } while (gameover == true || pv == 0);
+    
 
-    if (ganar == true)
-    {
-        finganar();
-    }
-    else if (ganar == false)
-    {
-        finperder();
-    }
+   
     
     
-     /*cout<<"\nSientes que tu cuerpo se adentra a un espiral de caída libre. De pronto, frenas en seco.\n";
-     cout<<"Llegas a un espacio completamente luminoso. La claridad te nubla la vista.\n";
-     cout<<"No observas ni sientes nada. Cuando de pronto escuchas multiples voces acercándose,\n";
-     cout<<"el ambiente empieza a temblar y ves a lo distancia una silueta oscura acercarse. Todo se torna oscuro y lúgubre.\n";
-     cout<<"Las voces giran gritando a tu alrededor.\n";
-     cout<<Susurro: Debes decidir tus últimos pasos hacia tu destino. Dame un NOMBRE para poder ayudarte.\n";
-     cout<<"\n\n\tIngresa el nombre:";
-     cin>>"\n\n\tnombre";
+     /*         system("clear");
+                cout<<"Continuas caminando hasta que sientes como tu cuerpo cae en caida libre dentro d un espiral.\n";
+                cout<<"De pronto, frenas en seco.";
+                cout<<"Llegaste a un espacio luminoso. Se te nubla la vista, no observas ni sientes nada.\n";
+                cout<<"Escuchas multiples voces acercándose a lo lejos mientras ves a una silueta oscure acercarse a la distancia\n";
+                cout<<"Todo se torna oscuro\n";
+                cout<<"Susurro: \"Debes enfrentar tu destino ahora. Tal vez pueda ayudarte si me das un nombre.";
+                cin>>nombre;
+                cout<<"\n\nIngresa 1 para continuar:   ";
 
 
      
@@ -1277,12 +1250,32 @@ void desafiofinal() {
 }
 
 void finganar(){
+    do{
+        system("clear");
+        cout<<"\nSientes a hilo arrastrarte desde el pecho y la velocidad de su movimiento es tan rápida que no logras observar nada a tu alrededor.\n";
+        cout<<"Sientes que el oxígeno regresa a tu cuerpo. Das un suspiro, sientes de poco a poco tus extremidades , abres los ojos lentamentente.\n"; 
+        cout<<"Todo parece estar normal. ¿Fue un sueño? Sabes que no. Pero sonríes al saber que terminó.";
+        
+
+        
+    }while (gameover == true && ganar== true);
     /*cout<<"\nSientes a hilo arrastrarte desde el pecho y la velocidad de su movimiento es tan rápida que no logras observar nada a tu alrededor.\n"; 
     cout<<"Sientes que el oxígeno regresa a tu cuerpo. Das un suspiro, sientes de poco a poco tus extremidades , abres los ojos lentamentente.\n"; 
     cout<<"Todo parece estar normal. ¿Fue un sueño? Sabes que no. Pero sonríes al saber que termino.";*/
 
 }
 void finperder(){
+    do{
+        system("clear");
+        cout<<"\nLa oscuridad es cada vez más etérea. Dejas de oír las voces, quieres correr pero no puedes.\n"; 
+        cout<<"Sabes que ya no hay un camino de regreso. No sabes como llegaste ahí y empiezas a olvidar todo lo se pasaste en el camino.\n";
+        cout<<"Observas como te vas tornando en unx de ellxs. Tu cuerpo va mutando hasta convertirse en silueta oscura y alargada.\n";
+        cout<<"Quieres gritar pero solo percibes gritos y lamentos, la mente se te nubla. El último pensamiento que había de ti se desvanece.\n";
+        cout<<"\n\n\n\tGAME OVER";
+
+
+
+    }while (gameover == true && ganar== false);
     /*cout<<"\nLa oscuridad es cada vez más etérea. Dejas de oír las voces, quieres correr pero no puedes.\n"; 
     cout<<"Sabes que ya no hay un camino de regreso. No sabes como llegaste ahí y empiezas a olvidar todo lo se pasaste en el camino.\n";
     cout<<"Observas como te vas tornando en unx de ellxs. Tu cuerpo va mutando hasta convertirse en silueta oscura y alargada.\n";

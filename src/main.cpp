@@ -2,23 +2,30 @@
 //Torrejón Torres Nadia
 //Frías Hernández Joshua
 
+#include <cstdlib>
 #include <iostream>
-#include <random>
-#include <thread>
 #include <string>
+#include <ctime>
+#include <thread>
 
 using namespace std;
 
 /*      Variables globales      */
+bool finanimacion;
+bool ganar;
 bool movimiento;
 bool ayudar;
 bool cruzar;
+bool gameover = false;
+bool azazel;
 int primermovimiento;
 int passcoin;
 int puerta;
 float pv = 10;
+string nombre;
 
 /*      Prototipado del juego       */
+void animpr();
 void menupr();
 void instrucciones();
 void juegopr();
@@ -43,6 +50,7 @@ void finperder();
 
 /*      Main principal      */
 int main() {
+    animpr();
     menupr();
     juegopr();
 
@@ -218,6 +226,219 @@ int main() {
 }
 
 /*      Desgloce de funciones       */
+void animpr() {
+    int i;
+    int j;
+    string animacion1[] = {
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                      
+                       
+                    
+                    
+                    
+                    
+                    
+                  
+                    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )",
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                                          .';WW'.. .''         ''.      ',OMNW0                    xMNW0  
+                  
+                   
+                   
+                
+                
+                
+                
+               lMO''''''oMWWX. dMWMO    .'cMX. 0Mo      OMNWXMN,'. .    .'OMO''',''''. .XMc'.    ''''.    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )",
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                                          .';WW'.. .''         ''.      ',OMNW0                    xMNW0  
+                  .;;.            .        ;MNKK.   :MW:;.     .NM: . .;;KMXKd             . .;,    xMo    
+            
+             
+              
+               
+           
+               oMNXK0XNMNM0    dMWMO  ,;OMNMX. 0Mk;'    OMo 'XKWM: . .;;KMXXKMNXXKX0Xd  OXNMo   .NMWMo .  
+               lMO''''''oMWWX. dMWMO    .'cMX. 0Mo      OMNWXMN,'. .    .'OMO''',''''. .XMc'.    ''''.    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )",
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                                          .';WW'.. .''         ''.      ',OMNW0                    xMNW0  
+                  .;;.            .        ;MNKK.   :MW:;.     .NM: . .;;KMXKd             . .;,    xMo    
+                  :MNcc.        ,c,    .   ;MX.     :MWNM;     .NM: 'clWWO0, .cccccc'      ;ckMO  . xMo .  
+            
+             
+           
+               lMk    OMK0x    dMWMKccXMK00MX. d0XM0c::cKMo   .NM: . .WWO0, ;MX.          OMo .ccNMWMo    
+               oMNXK0XNMNM0    dMWMO  ,;OMNMX. 0Mk;'    OMo 'XKWM: . .;;KMXXKMNXXKX0Xd  OXNMo   .NMWMo .  
+               lMO''''''oMWWX. dMWMO    .'cMX. 0Mo      OMNWXMN,'. .    .'OMO''',''''. .XMc'.    ''''.    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )",
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                                          .';WW'.. .''         ''.      ',OMNW0                    xMNW0  
+                  .;;.            .        ;MNKK.   :MW:;.     .NM: . .;;KMXKd             . .;,    xMo    
+                  :MNcc.        ,c,    .   ;MX.     :MWNM;     .NM: 'clWWO0, .cccccc'      ;ckMO  . xMo .  
+                  :MWNM;        dMd .oo.   ;MX.   ,ookxNM;     .NMkokMNkx.   ;MNkkxk;      OMNMKol. xMo    
+           
+               oMKolloKMo      dMKkkMMWM: ;MX    oMXkkNMWMo   .NMkolooWW.   ;MNoololo;    OMo 'MWkkXMo    
+               lMk    OMK0x    dMWMKccXMK00MX. d0XM0c::cKMo   .NM: . .WWO0, ;MX.          OMo .ccNMWMo    
+               oMNXK0XNMNM0    dMWMO  ,;OMNMX. 0Mk;'    OMo 'XKWM: . .;;KMXXKMNXXKX0Xd  OXNMo   .NMWMo .  
+               lMO''''''oMWWX. dMWMO    .'cMX. 0Mo      OMNWXMN,'. .    .'OMO''',''''. .XMc'.    ''''.    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )",
+        R"(
+                     .          .    .     .WWNMo      .          . .    .....  .        .      . ..oMK. 
+                                          .';WW'.. .''         ''.      ',OMNW0                    xMNW0  
+                  .;;.            .        ;MNKK.   :MW:;.     .NM: . .;;KMXKd             . .;,    xMo    
+                  :MNcc.        ,c,    .   ;MX.     :MWNM;     .NM: 'clWWO0, .cccccc'      ;ckMO  . xMo .  
+                  :MWNM;        dMd .oo.   ;MX.   ,ookxNM;     .NMkokMNkx.   ;MNkkxk;      OMNMKol. xMo    
+               ;xOMWNMkx;      dMd 'MMkx' ;MX    oMk  XMkx;   .NMNMWMNxd.   ;MNxxdxdx:    OMOdxMN. xMo    
+               oMKolloKMo      dMKkkMMWM: ;MX    oMXkkNMWMo   .NMkolooWW.   ;MNoololo;    OMo 'MWkkXMo    
+               lMk    OMK0x    dMWMKccXMK00MX. d0XM0c::cKMo   .NM: . .WWO0, ;MX.          OMo .ccNMWMo    
+               oMNXK0XNMNM0    dMWMO  ,;OMNMX. 0Mk;'    OMo 'XKWM: . .;;KMXXKMNXXKX0Xd  OXNMo   .NMWMo .  
+               lMO''''''oMWWX. dMWMO    .'cMX. 0Mo      OMNWXMN,'. .    .'OMO''',''''. .XMc'.    ''''.    
+               ...      ..;MN. .....      ...  ...      .......    . .    ...           ...      .     .  
+        )"
+    };
+    string animacion2[] = {
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                                           
+                                      
+                                  
+                               
+                           
+                         
+                         
+                      
+                      
+                            
+                                  
+                                        
+                                           
+                                                   ........'''...........                         
+        )",
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                       ..,;::;;;cldddoooodoooodooccccc:,'..                     
+                                    ..,:cllcclooolc:'......    .,colcodol::::,'.                 
+                                 ...;clddoll:,;,',loodkO0KK0Okxxkxxddoccolllolc;:;...             
+         
+                            
+                         
+                         
+                      
+                      
+                            
+                                 ....:lllcllcc;;cdd00NXXKKKXXXXXKkdc,',:clclclc;,.               
+                                       ..,;cloll:cllc:clcllllc:::cclolcllllc::,.                  
+                                          ..',:::::;,:cloolooollc:;;;'','..                     
+                                                   ........'''...........                         
+        )",
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                       ..,;::;;;cldddoooodoooodooccccc:,'..                     
+                                    ..,:cllcclooolc:'......    .,colcodol::::,'.                 
+                                 ...;clddoll:,;,',loodkO0KK0Okxxkxxddoccolllolc;:;...             
+                              .',;oxdo:',;clxk0XNNNWWWWWMMMMWMWMMMWNK0kxkoc;;codd:',,..          
+                            
+                         
+                         
+                      
+                      
+                           ....,;:cloolc;,...:kKXK0XXXXKXNXXKXXXKKXXW0l...';llccool:,,'.         
+                                 ....:lllcllcc;;cdd00NXXKKKXXXXXKkdc,',:clclclc;,.               
+                                       ..,;cloll:cllc:clcllllc:::cclolcllllc::,.                  
+                                          ..',:::::;,:cloolooollc:;;;'','..                     
+                                                   ........'''...........                         
+        )",
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                       ..,;::;;;cldddoooodoooodooccccc:,'..                     
+                                    ..,:cllcclooolc:'......    .,colcodol::::,'.                 
+                                 ...;clddoll:,;,',loodkO0KK0Okxxkxxddoccolllolc;:;...             
+                              .',;oxdo:',;clxk0XNNNWWWWWMMMMWMWMMMWNK0kxkoc;;codd:',,..          
+                           ..;ldol:'':ldxdl:cOXKXXXXNXNXNNNWWNNWNXXXWMMMNxxkkxxxl:cdxo:'.         
+                         
+                         
+                      
+                     ...;cooodddxl:d:,..... ,0KXKKXNXNXKXXXNNXXXXXXKX0XWNc  ...,;:;llc,...        
+                           ....,;:cloolc;,...:kKXK0XXXXKXNXXKXXXKKXXW0l...';llccool:,,'.         
+                                 ....:lllcllcc;;cdd00NXXKKKXXXXXKkdc,',:clclclc;,.               
+                                       ..,;cloll:cllc:clcllllc:::cclolcllllc::,.                  
+                                          ..',:::::;,:cloolooollc:;;;'','..                     
+                                                   ........'''...........                         
+        )",
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                       ..,;::;;;cldddoooodoooodooccccc:,'..                     
+                                    ..,:cllcclooolc:'......    .,colcodol::::,'.                 
+                                 ...;clddoll:,;,',loodkO0KK0Okxxkxxddoccolllolc;:;...             
+                              .',;oxdo:',;clxk0XNNNWWWWWMMMMWMWMMMWNK0kxkoc;;codd:',,..          
+                           ..;ldol:'':ldxdl:cOXKXXXXNXNXNNNWWNNWNXXXWMMMNxxkkxxxl:cdxo:'.         
+                        ..:ll;';:lodol;....N0KNNNKXXXNMMMMM0odNKNXXKKWNMMdloldddkdc;;codl,.      
+                         
+                     .:;lxxoc:..dll.       'N00KXNXNKKNMMMMMMMWNXXXXKXXXMMo...  ..;lkKo,..        
+                     ...;cooodddxl:d:,..... ,0KXKKXNXNXKXXXNNXXXXXXKX0XWNc  ...,;:;llc,...        
+                           ....,;:cloolc;,...:kKXK0XXXXKXNXXKXXXKKXXW0l...';llccool:,,'.         
+                                 ....:lllcllcc;;cdd00NXXKKKXXXXXKkdc,',:clclclc;,.               
+                                       ..,;cloll:cllc:clcllllc:::cclolcllllc::,.                  
+                                          ..',:::::;,:cloolooollc:;;;'','..                     
+                                                   ........'''...........                         
+        )",
+        R"(
+                                                      ......',;;:;,,'...,''...                           
+                                       ..,;::;;;cldddoooodoooodooccccc:,'..                     
+                                    ..,:cllcclooolc:'......    .,colcodol::::,'.                 
+                                 ...;clddoll:,;,',loodkO0KK0Okxxkxxddoccolllolc;:;...             
+                              .',;oxdo:',;clxk0XNNNWWWWWMMMMWMWMMMWNK0kxkoc;;codd:',,..          
+                           ..;ldol:'':ldxdl:cOXKXXXXNXNXNNNWWNNWNXXXWMMMNxxkkxxxl:cdxo:'.         
+                        ..:ll;';:lodol;....N0KNNNKXXXNMMMMM0odNKNXXKKWNMMdloldddkdc;;codl,.      
+                        ..':c:oO0kc.... .. lXK0XNNWNOMMMMMMMXk0MXNKKNX0KMMOoc;;,,cldxxc,...''..   
+                     .:;lxxoc:..dll.       'N00KXNXNKKNMMMMMMMWNXXXXKXXXMMo...  ..;lkKo,..        
+                     ...;cooodddxl:d:,..... ,0KXKKXNXNXKXXXNNXXXXXXKX0XWNc  ...,;:;llc,...        
+                           ....,;:cloolc;,...:kKXK0XXXXKXNXXKXXXKKXXW0l...';llccool:,,'.         
+                                 ....:lllcllcc;;cdd00NXXKKKXXXXXKkdc,',:clclclc;,.               
+                                       ..,;cloll:cllc:clcllllc:::cclolcllllc::,.                  
+                                          ..',:::::;,:cloolooollc:;;;'','..                     
+                                                   ........'''...........                         
+        )"
+    };
+
+    do
+    {
+        for (i = 0; i < 6; i++)
+        {
+            if (i)
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                system("clear");
+                cout<<animacion1[i];
+                cout<<animacion2[i];
+            }    
+        }
+
+        
+
+        if (i == 6)
+        {
+            finanimacion = true;
+        }
+        
+        
+        
+    } while (!finanimacion);
+}
+
 void menupr() {
     bool repite = true;
     int opcion;
@@ -305,8 +526,7 @@ void instrucciones() {
         cout<<"\n\n\n\tAWAKEN es una aventura conversacional creada por Carla Torrejón, Nadia Melyna T y Joshua Frías para el primer";
         cout<<"\n\tcuatrimestre de Informática General en la Universidad Nacional de Artes, 2021,";
         cout<<"\n\n────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
-        cout<<"\n\n\n\t\t\t1) Jugar";
-        cout<<"\t\t2) Regresar";
+        cout<<"\n\n\n\t\t\t\t\t1) Regresar";
         cout<<"\t\t0) Salir";
         cout<<"\n\n\n\n\n\n\n\n¿Qué opción eliges?";
         cin>>opcion;
@@ -314,9 +534,6 @@ void instrucciones() {
         switch (opcion)
         {
         case 1:
-            repite=false;
-            break;
-        case 2:
             repite=false;
             break;
         case 0:
@@ -453,9 +670,9 @@ void moverte() {
                                         ░░░░░░░█████████████████████████░░░░░░░░)";
             cout<<"\n\n\"¿Dejaste tu cuerpo atrás\? Tal vez ya ni siquiera lo sientes.\"\n";
             cout<<"\nObservas hacia abajo y te ves a ti acostado...\n";
-            cout<<"¡Estas dormido!, pero estás seguro que esto no es un simple sueño.\n";
-            cout<<"\n\nSusurro: \"No puedes quedarte aquí, este lugar está lleno de peligros.\n";
-            cout<<"\t  No hay tiempo de responder preguntas, sé cuatelosx y presta atención a los detalles, ¡Vamos!\"";
+            cout<<"Estas dormido, pero no estas realmente seguro de que solo es un sueño.\n";
+            cout<<"\n\nSusurro: \"~No puedes quedarte aquí, este lugar es peligroso.~\n";
+            cout<<"\t ~No hay tiempo de responder preguntas, sé cuatelosx y presta atención a los detalles~\"";
             cout<<"\n\n\nVidas: "<<pv;
             cout<<"\nIngresa 1 para continuar:  ";cin>>contb;  
     } while (!contb);
@@ -588,11 +805,11 @@ void puertas() {
                                  | |           | |                         | |           | |
                                  | |           | |                         | |           | |
                                  |_|___________|_|                         |_|___________|_|)";
-        cout<<"\n\n\n\nRecorres un largo y oscuro pasillo, tu cuerpo se vuelve cada vez más transparente. Te asustas.\n";
+        cout<<"\n\n\n\nRecorres un largo y oscuro pasillo, tu cuerpo se vuelve cada vez más translucido. Eso te aterra.\n";
         cout<<"\nObservas siluetas avanzando junto a ti. De pronto, observas dos puertas que llaman tu atención.\n";
         cout<<"\nLa primera puerta tiene un número 100, se ve nueva y parece que hay alguien dentro.\n";
         cout<<"\nLa segunda puerta tiene un número 300, esta puerta es vieja y un aire espectral sale de él.";
-        cout<<"\n\nSusurro: \"Elige cuidadosamente, en este lugar todo puede ser una trampa...\"";
+        cout<<"\n\nSusurro: \"~Elige cuidadosamente, en este lugar todo puede ser una trampa...~\"";
         cout<<"\n\n\n\n\nTe acercas";
         cout<<"\n\n\n\nVidas: "<<pv;
         cout<<"\nElegiste:  ";
@@ -636,7 +853,7 @@ void puertacorrecta() {
                                                     | |      ,'   | |
                                                     | |   ,'      | |
                                                     |_|,'_________|_|)";
-        cout<<"\n\n~Un viento helado escapa al abrir la puerta.~";
+        cout<<"\n\n~Un viento gélido escapa al abrir la puerta.~";
         cout<<"\nNo encuentras nada en la habitación";
         cout<<"\n\n~Susurro: ~Sigue avanzando...Estás más cerca de lo que crees~";
         cout<<"\nVidas:"<<pv;
@@ -661,12 +878,12 @@ void puertaincorrecta() {
     {
         system("clear");
         cout<<"\nSientes que tus pasos se tornan más pesados y tu respiración más lenta. \t¡Las siluetas te atacan!\n";
-        cout<<"\nDiferentes voces desgarradoras se arremolinan por todo el cuarto, pierdes la noción del espacio.";
-        cout<<"\n\nCuando la habitación se calma observas tu mano y ya no puedes verla.";
-        cout<<"Susurro: ¡Te estás perdiendo! Si sigues perdiendo vidas así terminarás como ellos.";
+        cout<<"\nVoces desgarradoras se arremolinan por todo el cuarto, pierdes la noción del espacio.";
+        cout<<"\n\nCuando la habitación se calma observas tu mano y es casí impercibible.";
+        cout<<"~Susurro: Te estás perdiendo... Si sigues perdiendo vidas terminarás como ellos.~";
         cout<<"\n\nPerdiste 2 vidas.";
         cout<<"\n\nFrente a ti se materializan unas escaleras.";
-        cout<<"\n\n\n\n\n\nSusurro: \"Debemos continuar, la prueba más grande aún te espera\"";
+        cout<<"\n\n\n\n\n\nSusurro: \"~Debemos continuar, la prueba más grande aún te espera~\"";
         cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>select;
@@ -714,7 +931,7 @@ void escaleras() {
         {
             system("clear");
             cout<<"\n\n\nAl subir las escaleras miras a la distancia una siluesta borrosa.\n";
-            cout<<"Con señas te pide que te acerques.\nAunque te produce una sensación de peligro, decides acercarte.";
+            cout<<"Con señas te pide que te acerques.\nAunque te causa terror saber que es, decides acercarte.";
             cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVidas: "<<pv;
             cout<<"\nIngresa 1 para acercarte:   ";
             cin>>cerca;
@@ -844,9 +1061,10 @@ void help() {
                                         XXd:l,,;.:...          ....... ..;:.''.,.',,'
                                         NXx;O,,:'cd.                      ..,c.l..'.;)";
         pv -=2;
-        cout<<"\n\nAl aceptar su trato, lo que antes era una niña se convirtió en un monstruo.";
-        cout<<"\n\n\t\t\tE͖l n̒͐͐o͐̍m̜̿b͕ͮrĕ̽̓ d̯̳e̖͔͚ a̘͔̣͆̓ͤq̗͔ͧ͐u̐͑el̮̭ͤ̇l̗̪͎̾͛́o q̠̻̀̀ǔͭ̔e͓̱͓͛͐̇ t͒ͮ͌e̠̤ ̖͔̈́̽ac͕̑o͓̾m̳̪̌ͦpã̲̖̃ñ̯̙̲̓ͮ̂a ͨ̀es Å͓ZȀ̈̓Z̰͉͓ͯͬ̚E̴L\n";
-        cout<<"\t\t\tA͕͓͓̦̹̫̻̯ͧ͊̃ͬ̓͌̇͛ḩ̴̖͎̬o͕̜̙̤͙͉͕̠̲͈͉ͦ͒̑̊̎̀͗̊̒͒̋͡r̛͓͚̜̞̪̲̰̬̤̬̱͚͉ͮͪ̒̓ͤͩ̓͑ͤ͗͂̂͋̈͟͝ͅǎ̼̱͔̞͚̳͂̐ͫ̌̚,̛̮͈́͟ ̵͔̯͕̻̘͎̀͠¡҉V̶͖͔̗͔͈̮̞̟͇͕̠̘̾̀̌̎̄͑̽̉͆͌̿̏̆ͅe̜̘̣̩̙͔̲̪̳̭̩͖͈͗̈́͌ͥ̈͂ͬͤ̒̅̐̾̍t̬̻͍̼͕̣̘̫̅̒͊̊̋̍̿̇͘ȩ̀!̵͕̣̦̜̟͖̼̰̜̭̺̙ͪ̓ͧ͂̔̿̏ͤ̾̓̂̓\n";
+        azazel = true;
+        cout<<"\n\nDe pronto la niña se transforma en un horrible ser infernal. Y con una terrorifica voz te grita:";
+        cout<<"\n\n\t\t\tĀ̓̾ͥ̈̿̌q̠͔̭ͭ͒͛u̘͓e͕̪͙͕̦̰̭̽ͤ͑̒̓̋͒l͎̻͈̥ͩ̾̇̄ ̺͙̱̞̣s̩̦̞̱̻e͚͉̎͆r̯̯̜͊̑ͪ ͈̬ͬ̑q͐̄ue̟͇ͫ̌ ṱ̬̰e̻͓͚̼̳̹ͯ̇͗͋͆͊ a͋co̿̀̃ͭ̀ḿ̪̭͈̑̒͊ͅp̯̰͔̞̞̆̍̍̒ͤͬͅa̘̲̰͚̝̟̒̿̎̓͑̚ñ̫̺̬͕ͤ͗̆͌a̘̹̭͉̐̏ͤͦ s̬̦͔̦̤͇̀̔ͣ̆͒̚ẹ̬̠̫̫̼̪̑͐̂͊̓ͤ̓ ͨ̚ĥa̋̄ͧ̄̚c̙͇͊ͩě͕̹̺̭̦̞͙̇̏ͮ̈́ͤ̚ l̬̮̮͕̀ͣͮ̊la͆ͫͭ̃m̜̣͍͚̥̪̗̌̋̅̓͒͒̀a̓ͣ͐ͭr͇͍̈ͪ ̝̞̯̙̜̓͒ͯ̂͗A̯̱͙̫̬Z̀ͫ͊̉Ã̗̝̰̯̝̉̇ͦͭ̚ͅZ̄̏E͚͈ͅL̊̆̇ͨ ̞̼͔\n";
+        cout<<"\t\t\tA͎̥ͬͬho̙ra̫ á̘̥̖͐ͪléj̞͎̠̃̒͂ate ͕͓͋͌y̲̭̟͊̌̓ sigͧ͑u͕͔̤ͤ̐ͪe̖͇̳̽͛ͥ t̯̾u ca̜͗mí͍̩͈̇̑n͍̻ͅŏ̫\n";
         cout<<"\n\n\nPerdiste 2 vidas.\n";
         cout<<"\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:  ";
@@ -860,6 +1078,7 @@ void nohelp() {
     do
     {
         system("clear");
+        azazel = false;
         cout<< R"(                                        00O000O000KKKXXXXXXXXXXXNNNXXXXXNNNNXNXXXXXXN
                                         XKKXKKKKKKXXXXNXK0OkkxkO0XNNXXXXNNNNXXNNNNNXX
                                         K0KKXKKKKXXKxc;..   ..   ..,cd0XNNNNXXNXXNNNX
@@ -885,7 +1104,7 @@ void nohelp() {
                                         NO;,..:... ........,,:c;;;;:ldoddlc.......:'.
                                         XXd:l,,;.:...          ....... ..;:.''.,.',,'
                                         NXx;O,,:'cd.                      ..,c.l..'.;)";
-        cout<<"\n\tDe pronto la voz de la niña se torna gruesa y te grita con desesperación:\n\n\t\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n";
+        cout<<"\n\tDe pronto la voz de la niña se torna grave y te grita con desesperación:\n\n\t\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n";
         cin>>seguir;
     } while (!seguir);
 }
@@ -923,10 +1142,10 @@ void espejo() {
                                     0O0KxO0KkOOOkO:                              
                                     000OO0OK00OOO00o                             
                                     000kOK0KO0O0O00Ko   )";
-        cout<<"\n\nCorres para escapar y te encuentras en una habitación desolada, dentro hay un pequeño espejo que te parece familiar.\n";
-        cout<<"\n\nSusurro: \"Falta poco...para poder continuar es necesario cruzar el espejo.\n";
-        cout<<"\t  Esta es una decisión dificil pues muy pocos son capaces de dar \n\t  el salto al vacío y perder un poco de sí mismos.";
-        cout<<"\n\nAl ver tu mano notas que te desvaneces más y más.\n";
+        cout<<"\n\nIntentas escapar y llegas a una habitación desolada y lugubre. Dentro de ella observas y te acercas lentamente.\n";
+        cout<<"\n\nSusurro: \"~Falta poco...para poder continuar es necesario cruzar el espejo.~\n";
+        cout<<"\t  ~Esta es una decisión dificil pues muy pocos son capaces de dar \n\t  el salto al vacío y perder un poco de sí mismos.~";
+        cout<<"\n\nAl ver tu mano notas que te desvaneces lentamente.\n";
         cout<<"\n\t\t1) Entrar al espejo";
         cout<<"\t\t2) No entrar al espejo";
         cout<<"\nDecidiste:   ";
@@ -958,7 +1177,7 @@ void cruzandoespejo_si() {
         system("clear");
         cout<<"\nDecidiste entrar al espejo.";
         cout<<"Al tocarlo, sientes cómo te absorbe poco a poco dentro de él.\n";
-        cout<<"Todo se vuelve oscuro por un momento pero tú sientes paz.";
+        cout<<"Todo se vuelve oscuro por un momento. Pero tú sientes paz.";
         cout<<"Has perdido 3 vidas";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
@@ -968,10 +1187,10 @@ void cruzandoespejo_si() {
     do
     {
         system("clear");
-        pv += 5;
-        cout<<"Una luz ha salido del espejo, levitas y notas tu cuerpo más solido\n";
-        cout<<"El espejo te ha regalado 5 vidas";
-        cout<<"Susurro: \"Parece que el espejo te ha recompensado por tu valentía, te felicito, ahora debemos contnuar\"";
+        pv += 2;
+        cout<<"Una luz ha salido del espejo, observas que tu cuerpo lentamente se materializa r\n";
+        cout<<"El espejo te ha regalado 2 vidas";
+        cout<<"Susurro: \"~Parece que el espejo ha recompensado tu valentía. Ahora debemos continuar~\"";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>contb;
@@ -987,7 +1206,7 @@ void cruzandoespejo_no() {
         pv -= 3;
         system("clear");
         cout<<"\nDecidiste alejarte del espejo.";
-        cout<<"Mientras te alejas, una energia te jala dentro del espejo y te obliga a enctrar .\n";
+        cout<<"Mientras te alejas, voces y gritos emanan del espejo. Una energía te jala hacia del espejo y te obliga a entrar .\n";
         cout<<"Todo se vuelve oscuro por un momento y sientes miedo.";
         cout<<"Has perdido 3 vidas";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
@@ -998,9 +1217,9 @@ void cruzandoespejo_no() {
     do
     {
         system("clear");
-        cout<<"\nAl pasar al otro lado del espejo, éste se rompe y te trapa del otro lado.\n";
+        cout<<"\nAl pasar al otro lado del espejo, éste se rompe y te atrapa del otro lado.\n";
         cout<<"Cada vez te pierdes más y más";
-         cout<<"Susurro: \"El espejo ha tenido qué guiarte por el camino y ha exijido su pago, ¡Vamos, estamos cerca!\"";
+         cout<<"Susurro: \"~El espejo ha tenido qué guiarte por el camino y ha exijido algo a cambio. Quiza estas acercandote al destino final~\"";
         cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>contb;
@@ -1008,6 +1227,66 @@ void cruzandoespejo_no() {
 }
 
 void desafiofinal() {
-    system("clear");
-    cout<<"Aquí va el final :)";
+    string nombre;
+    //Variables combate jugador
+    float pvcombate = pv;
+    float tuventaja;
+    //Variables combate ente
+    float pvente = pv + 2;
+    float suventaja;
+
+    do
+    {
+        if (pvcombate >= 5)
+        {
+            system("clear");
+            cout<<"Tienes más de 5 vidas";
+        }
+        else if (pvcombate < 5)
+        {
+            system("clear");
+            cout<<"Tienes menos de 5 vidas";
+        }
+        
+        
+        
+    } while (gameover == true || pv == 0);
+
+    if (ganar == true)
+    {
+        finganar();
+    }
+    else if (ganar == false)
+    {
+        finperder();
+    }
+    
+    
+     /*cout<<"\nSientes que tu cuerpo se adentra a un espiral de caída libre. De pronto, frenas en seco.\n";
+     cout<<"Llegas a un espacio completamente luminoso. La claridad te nubla la vista.\n";
+     cout<<"No observas ni sientes nada. Cuando de pronto escuchas multiples voces acercándose,\n";
+     cout<<"el ambiente empieza a temblar y ves a lo distancia una silueta oscura acercarse. Todo se torna oscuro y lúgubre.\n";
+     cout<<"Las voces giran gritando a tu alrededor.\n";
+     cout<<Susurro: Debes decidir tus últimos pasos hacia tu destino. Dame un NOMBRE para poder ayudarte.\n";
+     cout<<"\n\n\tIngresa el nombre:";
+     cin>>"\n\n\tnombre";
+
+
+     
+     */ 
+}
+
+void finganar(){
+    /*cout<<"\nSientes a hilo arrastrarte desde el pecho y la velocidad de su movimiento es tan rápida que no logras observar nada a tu alrededor.\n"; 
+    cout<<"Sientes que el oxígeno regresa a tu cuerpo. Das un suspiro, sientes de poco a poco tus extremidades , abres los ojos lentamentente.\n"; 
+    cout<<"Todo parece estar normal. ¿Fue un sueño? Sabes que no. Pero sonríes al saber que termino.";*/
+
+}
+void finperder(){
+    /*cout<<"\nLa oscuridad es cada vez más etérea. Dejas de oír las voces, quieres correr pero no puedes.\n"; 
+    cout<<"Sabes que ya no hay un camino de regreso. No sabes como llegaste ahí y empiezas a olvidar todo lo se pasaste en el camino.\n";
+    cout<<"Observas como te vas tornando en unx de ellxs. Tu cuerpo va mutando hasta convertirse en silueta oscura y alargada.\n";
+    cout<<"Quieres gritar pero solo percibes gritos y lamentos, la mente se te nubla. El último pensamiento que había de ti se desvanece.\n";
+    cout<<"\n\n\n\tGAME OVER";
+*/
 }

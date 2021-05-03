@@ -38,7 +38,7 @@ void cruzandoespejo_no();
 void desafiofinal();
 void finganar();
 void finperder();
-void fin();
+void animfin();
 
 
 /*      Main principal      */
@@ -67,32 +67,38 @@ int main() {
                {
                    cruzandoespejo_si();
                    desafiofinal();
-                   if (finalcoin == 1)
+                   switch (finalcoin)
                    {
+                   case 1:
                        finganar();
-                       fin();
-                   }
-                   else if (finalcoin == 0)
-                   {
+                       break;
+                   case 2:
                        finperder();
-                       fin();
+                       break;
+                   default:
+                       break;
                    }
-                }
+
+                   
+               }
                else if (cruzar == false)
                {
                    cruzandoespejo_no();
                    desafiofinal();
-                   if (finalcoin == 1)
+                   switch (finalcoin)
                    {
+                   case 1:
                        finganar();
-                       fin();
-                   }
-                   else if (finalcoin == 0)
-                   {
+                       break;
+                   case 2:
                        finperder();
-                       fin();
+                       break;
+                   default:
+                       break;
                    }
-                }    
+
+                   
+               }    
            }
            else if (ayudar == false)
            {
@@ -106,13 +112,11 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }                
+                   }                 
                }
                else if (cruzar == false)
                {
@@ -121,13 +125,11 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }  
+                   }   
                }  
            }   
        }
@@ -149,12 +151,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }   
                }
                else if (cruzar == false)
@@ -164,13 +164,11 @@ int main() {
                     if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }  
+                   }   
                } 
            }
            else if (ayudar == false)
@@ -185,12 +183,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }
                }
                else if (cruzar == false)
@@ -200,12 +196,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }
                }
            }  
@@ -234,12 +228,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    } 
                }
                else if (cruzar == false)
@@ -249,12 +241,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }
                }    
            }
@@ -270,13 +260,11 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }  
+                   }   
                }
                else if (cruzar == false)
                {
@@ -285,13 +273,11 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }
+                   } 
                }  
            }   
        }
@@ -313,12 +299,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }
                }
                else if (cruzar == false)
@@ -328,12 +312,10 @@ int main() {
                     if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }
                } 
            }
@@ -349,12 +331,10 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
                    }     
                }
                else if (cruzar == false)
@@ -364,13 +344,11 @@ int main() {
                    if (finalcoin == 1)
                    {
                        finganar();
-                       fin();
                    }
                    else if (finalcoin == 0)
                    {
                        finperder();
-                       fin();
-                   }  
+                   }   
                }
            }  
        }
@@ -1080,7 +1058,7 @@ void puertaincorrecta() {
 void escaleras() {      
     int i;
     string escalones[] = {
-        "caminas",
+        "Caminas\n",
         "\n\n\n\n\n\n\n\n\n\n\n\nSubiste al primer escalón\n",
         "\n\n\n\n\n\n\n\n\n\n\n\tSubiste al segundo escalón\n",
         "\n\n\n\n\n\n\n\n\n\n\t\tSubiste al tercer escalón\n",
@@ -1091,7 +1069,19 @@ void escaleras() {
         "\n\n\n\n\n\t\t\t\t\t\t\tSubiste al octavo escalón\n",
         "\n\n\n\n\t\t\t\t\t\t\t\tSubiste al noveno escalón\n",
     };
-  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     for (i = 0; i < 10; i++)
     {
         if (i)
@@ -1284,12 +1274,9 @@ void nohelp() {
                                         NO;,..:... ........,,:c;;;;:ldoddlc.......:'.
                                         XXd:l,,;.:...          ....... ..;:.''.,.',,'
                                         NXx;O,,:'cd.                      ..,c.l..'.;)";
-        cout<<"\n\n Al negarte, lo que parecía ser una niña se convierte en un monstruo:\n";
-        cout<<"\n\n\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n\n";
-        cout<<"Sales corriendo mientras la ves perderse en la oscuridad";
-        cout<<"\n\n\n\n\nVidas: "<<pv;
-        cout<<"\nIngresa 1 para continuar:   ";cin>>seguir;
-        
+        cout<<"\n\tDe pronto la voz de la niña se torna grave y te grita con desesperación:\n\n\t\t\t\t\t\t\t ¡d̀ͩ̃͛̍̓̆̓̈́a͑̐̐me̞̤͖͍̙̬̜͔ͅ ̗̙͉̪̫̱̑͋̉ͧ͗̋ṭ̮̱͎̞̙͕̖̱ǔ̗̮̰̫͒͊̀s̪̯͊͛ ̦̻̥̲͓͖͙̦̲̏ͦ̓ͯ̆ͯ̃̏͆v̟̖̩̲̜i̞̫͉̥͍̱͍̰ͤ̓͑ͤͧ̅͑͌d̘ͯa̜̥s̤̰͓̭̎̑ͧͧ!\n\n";
+        cout<<"\n\tIngresa 1 para continuar:";
+        cin>>seguir;
     } while (!seguir);
 }
 
@@ -1326,13 +1313,12 @@ void espejo() {
                                     0O0KxO0KkOOOkO:                              
                                     000OO0OK00OOO00o                             
                                     000kOK0KO0O0O00Ko   )";
-        cout<<"\n\nLlegaste a una habitación desolada y lugubre, observas dentro de ella y te acercas lentamente.\n";
-        cout<<"\n\nSusurro: \"Falta muy poco, para poder continuar es necesario cruzar el espejo. Esta es una decisión dificil\n";
-        cout<<"\t  pues muy pocos son capaces de dar el salto al vacío y perder un poco de sí mismos.\"";
+        cout<<"\n\nIntentas escapar y llegas a una habitación desolada y lugubre. Dentro de ella observas y te acercas lentamente.\n";
+        cout<<"\n\nSusurro: \"~Falta poco...para poder continuar es necesario cruzar el espejo.~\n";
+        cout<<"\t  ~Esta es una decisión dificil pues muy pocos son capaces de dar \n\t  el salto al vacío y perder un poco de sí mismos.~";
         cout<<"\n\nAl ver tu mano notas que te desvaneces lentamente.\n";
         cout<<"\n\t\t1) Entrar al espejo";
         cout<<"\t\t2) No entrar al espejo";
-        cout<<"\n\nVidas: "<<pv;
         cout<<"\nDecidiste:   ";
         cin>>opcion;
 
@@ -1389,7 +1375,7 @@ void cruzandoespejo_si() {
         cout<<"Al tocarlo, sientes cómo te absorbe poco a poco dentro de él.\n";
         cout<<"Todo se vuelve oscuro por un momento. Pero tú sientes paz.";
         cout<<"\n\n\nHas perdido 3 vidas";
-        cout<<"\n\n\n\n\n\n\n\nVidas: "<<pv;
+        cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>conta;
     } while (!conta);
@@ -1449,7 +1435,7 @@ void cruzandoespejo_no() {
         cout<<"\nMientras te alejas, voces y gritos emanan del espejo. Una energía te jala hacia del espejo y te obliga a entrar .\n";
         cout<<"Todo se vuelve oscuro por un momento y sientes miedo.";
         cout<<"\n\n\nHas perdido 3 vidas";
-        cout<<"\n\nVidas: "<<pv;
+        cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>conta;
     } while (!conta);
@@ -1487,7 +1473,7 @@ void cruzandoespejo_no() {
         cout<<"\n\nAl pasar al otro lado del espejo, éste se rompe y te atrapa del otro lado.\n";
         cout<<"Cada vez te pierdes más y más";
          cout<<"\n\tSusurro: \"~El espejo ha tenido qué guiarte por el camino y ha exijido algo a cambio. Quizá estas acercandote al destino final~\"";
-        cout<<"\n\n\n\n\n\n\n\nVidas: "<<pv;
+        cout<<"\n\n\n\n\n\nVidas: "<<pv;
         cout<<"\nIngresa 1 para continuar:   ";
         cin>>contb;
     } while (!contb);   
@@ -1542,10 +1528,11 @@ void desafiofinal() {
 
             cout<<"\n\nContinuas caminando hasta que sientes como tu cuerpo cae en caida libre dentro de un espiral.\n";
             cout<<"De pronto, frenas en seco.\n";
-            cout<<"Estás en un espacio luminoso. Se te nubla la vista, no observas ni sientes nada. Escuchas multiples voces \n";
-            cout<<"acercándose a lo lejos mientras ves a una silueta oscura acercarse a la distancia. Todo se torna oscuro.\n";
-            cout<<"\n\t\t\tSusurro: \"Debes enfrentar tu destino ahora.";
-            cout<<"\n\nIngresa 1 para continuar:   ";
+            cout<<"Estás en un espacio luminoso. Se te nubla la vista, no observas ni sientes nada.\n";
+            cout<<"Escuchas multiples voces acercándose a lo lejos mientras ves a una silueta oscura acercarse a la distancia\n";
+            cout<<"Todo se torna oscuro\n";
+            cout<<"\n\tSusurro: \"Debes enfrentar tu destino ahora.";
+            cout<<"\nIngresa 1 para continuar:   ";
             cin>>conta;
         }while(!conta);
 
@@ -1587,7 +1574,7 @@ void desafiofinal() {
             cout<<"\nTal tez si supieras su nombre podrías defenderte";
             cout<<"\nNombrarlo:   ";
             cin>>nombre;
-            cout<<"\n\nIngresa 1 para continuar:   ";
+            cout<<"\nIngresa 1 para continuar:   ";
             cin>>contb;
         } while (!contb);
 
@@ -1595,14 +1582,13 @@ void desafiofinal() {
         {
             system("clear");
             cout<<"\nAl nombrar a "<<nombre<<" todo queda en penumbras y poco a poco la luz de una vela se enciende.\n";
-            cout<<"\nHay una pequeña mesa entre tú y "<<nombre<<" en donde 5 dados con 8 caras esperan.";
-            cout<<"\n\n"<<nombre<<": Al entrar a este lugar tu destino se ha vuelto incierto, para poder arreglarlo jugaremos una partida de dados.\n";
-            cout<<"\n\n\n\n\t\t\tLas reglas serán las siguientes:";
-            cout<<"\n\t\t\t-Si la suma de los dados es mayor a 20, tú ganas";
-            cout<<"\n\t\t\t-Si la suma de los dados es menor a 20, yo gano";
-            cout<<"\n\t\t\t-Si la suma de los dados es 20, volvemos a tirar";
+            cout<<"Hay una pequeña mesa entre tú y"<<nombre<<" en donde 5 dados con 8 caras esperan.";
+            cout<<"\n"<<nombre<<": Al entrar a este lugar tu destino se ha vuelto incierto, para poder arreglarlo jugaremos una partida de dados.\n";
+            cout<<"\n\tLas reglas serán las siguientes:";
+            cout<<"\n\t-Si la suma de los dados es mayor a 20, tú ganas";
+            cout<<"\n\t-Si la suma de los dados es menor a 20, yo gano";
+            cout<<"\n\t-Si la suma de los dados es 20, ambos perdemos";
             cout<<"\n\nRepetiremos este juego hasta que alguno de los dos pierda toda su energía.\nAl nombrarme hiciste que comience con las mismas vidas que tú";
-            cout<<"\n\n\n\n\n\nVidas: "<<pv;
             cout<<"\nIngresa 1 si estás listx:   ";
             cin>>contc;
         } while (!contc);
@@ -1623,26 +1609,24 @@ void desafiofinal() {
                 enemylife -= .5f;
                 system("clear");
                 conteo++;
-                cout<<"\n\t\t\t\tEstamos en la ronda "<<conteo;
-                cout<<"\n\n¡Ganaste esta ronda!";
+                cout<<"Estamos en la ronda "<<conteo;
                 cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
-                cout<<"\nTotal: "<<total;
-                cout<<"\n\n\nTú: "<<mainlife;
+                cout<<"\n\n¡Ganaste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
                 cout<<"\n"<<nombre<<": "<<enemylife;
-                cout<<"\n\n\n\t\t\tEl juego continua...\n";
+                cout<<"\n\n\nEl juego continua...\n";
             }
             else if (total < 20)
             {
                 mainlife -= .5f;
                 system("clear");
                 conteo++;
-                cout<<"\n\t\t\t\tEstamos en la ronda "<<conteo;
-                cout<<"\n\n¡Perdiste esta ronda!";
+                cout<<"Estamos en la ronda "<<conteo;
                 cout<<"\n\nLos dados han mostrado los números "<<dado1<<", "<<dado2<<", "<<dado3<<", "<<dado4<<" y "<<dado5;
-                cout<<"\nTotal: "<<total;
-                cout<<"\n\n\nTú: "<<mainlife;
+                cout<<"\n\n¡Perdiste esta ronda!";
+                cout<<"\n\nTú: "<<mainlife;
                 cout<<"\n"<<nombre<<": "<<enemylife;
-                cout<<"\n\n\n\t\t\tEl juego continua...\n";
+                cout<<"\n\n\nEl juego continua...\n";
 
                 if (mainlife == 0 || enemylife == 0)
                 {
@@ -1865,6 +1849,9 @@ void finganar() {
         cout<<"Ingresa 1 para continuar:   ";
         cin>>conta;
     }while (!conta);
+
+    
+    
 }
 
 void finperder() {
@@ -1901,16 +1888,15 @@ void finperder() {
                 ███░░░░░█▀░░░░█░░░░█░█░░░░░░░░░░░█░░░░▄░░░░█░░░▐░░▌░█░░░░░░░░░█░░▀██▄░░░░░░░░░▀█░░██░
                 )";
 
-        cout<<"\nLa oscuridad te absorbe. Las voces se agolpan dentro de ti mientras tu cuerpo se funde con ellas.\n"; 
+        cout<<"\nLa oscuridad te absorve. Las voces se agolpan dentro de ti mientras tu cuerpo se funde con ellas.\n"; 
         cout<<"Ya no hay un camino de regreso. Te olvidas de ti y todo lo que pasaste en el camino.\n";
         cout<<"Ya eres parte de la noche, ahora eres un alma que recorre el mundo de los sueños.\n";
         cout<<"\nIngresa 1 para continuar   ";
         cin>>conta;
     }while (!conta);
-}
 
-void fin() {
-    system("clear");
+    
+        system("clear");
         cout<<R"(                                                                                                                                                                                                                                                                                                                                                        
                                 .''''''''''''. ''''''''''''. .''.      .''. '''''''''''.                                
                                 kMMW00000KMMMl;MMMX00000NMM0 xMMWKd,;xXMMMo,MMMX0000000o                                
@@ -1940,9 +1926,6 @@ void fin() {
                                 kMM0     .WMMl.cOWMWXkWMMKd, xMMX.        lMMW.     KMMk                                
                                 kMMWXXXXXNMMMl   .;dXWOl.    xMMWXXXXXXXX;lMMW.     0MMk                                
                                 .............        .       ............  ...      ....)";
-
-                                cout<<"\n\n\t\thttps://awakenn.weebly.com/";
-                                cout<<"\t\t───────────────────────────";
-                                cout<<"\n\t\tEntra aquí para salir del sueño";
         exit(EXIT_SUCCESS);
+    
 }
